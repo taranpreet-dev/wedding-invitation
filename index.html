@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arjun Weds Meera — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fbf5e9; --ink:#2c241d; --gold:#b58b45; --rose:#a65d63;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Montserrat,sans-serif;color:var(--ink);background:var(--cream);overflow-x:hidden}
+section{position:relative}
+.cover{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(181,139,69,.14),transparent 28%),
+    radial-gradient(circle at 80% 80%,rgba(166,93,99,.12),transparent 30%),
+    var(--cream);
+  overflow:hidden;
+}
+.cover:before,.cover:after{
+  content:"";position:absolute;border:1px solid rgba(181,139,69,.35);border-radius:50%;
+  width:72vw;height:72vw;max-width:800px;max-height:800px;
+}
+.cover:before{transform:rotate(18deg)}
+.cover:after{width:55vw;height:55vw;max-width:620px;max-height:620px;transform:rotate(-18deg)}
+.petal{position:absolute;width:10px;height:16px;background:rgba(166,93,99,.22);border-radius:100% 0 100% 0;animation:float 9s linear infinite}
+.p1{left:10%;top:20%}.p2{left:84%;top:15%;animation-delay:2s}.p3{left:20%;top:75%;animation-delay:4s}.p4{left:76%;top:72%;animation-delay:1s}
+@keyframes float{0%{transform:translateY(20px) rotate(0);opacity:0}20%{opacity:1}100%{transform:translateY(-120px) rotate(220deg);opacity:0}}
+.content{position:relative;z-index:2;padding:30px;animation:rise 1.4s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+.kicker{letter-spacing:5px;text-transform:uppercase;font-size:11px;color:var(--gold);margin-bottom:22px}
+.names{font-family:"Great Vibes",cursive;font-size:clamp(64px,11vw,128px);line-height:.9;font-weight:400}
+.weds{font-family:"Cormorant Garamond",serif;font-size:28px;font-style:italic;margin:20px 0;color:var(--rose)}
+.date{font-family:"Cormorant Garamond",serif;font-size:24px;letter-spacing:4px}
+.scroll{display:inline-block;margin-top:55px;text-decoration:none;color:var(--ink);font-size:10px;letter-spacing:3px;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:7px}
+.story{padding:110px 20px;text-align:center;max-width:900px;margin:auto}
+.ornament{color:var(--gold);font-size:22px;margin-bottom:15px}
+h2{font-family:"Cormorant Garamond",serif;font-size:clamp(42px,7vw,68px);font-weight:500}
+.lead{font-family:"Cormorant Garamond",serif;font-size:25px;line-height:1.55;max-width:680px;margin:25px auto;color:#594b3d}
+.divider{width:90px;height:1px;background:var(--gold);margin:30px auto}
+.events{background:#f3e8d7;padding:100px 20px;text-align:center}
+.event-grid{max-width:1000px;margin:45px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:rgba(255,255,255,.55);padding:38px 20px;border:1px solid rgba(181,139,69,.25);transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 15px 35px rgba(60,40,20,.08)}
+.card .day{font-size:11px;letter-spacing:3px;color:var(--rose)}
+.card h3{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:600;margin:12px 0}
+.card p{font-size:13px;line-height:1.7;color:#6d5d4c}
+.countdown{padding:100px 20px;text-align:center}
+.timer{display:flex;justify-content:center;gap:clamp(12px,5vw,55px);margin-top:35px}
+.unit strong{font-family:"Cormorant Garamond",serif;font-size:50px;font-weight:500;display:block}
+.unit span{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#806e5a}
+.rsvp{padding:100px 20px;text-align:center;background:#30271f;color:#fbf5e9}
+.rsvp h2{color:#fbf5e9}
+.rsvp p{max-width:560px;margin:20px auto;line-height:1.7;color:#dfd1bd}
+.btn{display:inline-block;margin-top:15px;padding:14px 30px;border:1px solid var(--gold);color:#fff;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:.3s}
+.btn:hover{background:var(--gold)}
+footer{text-align:center;padding:28px;font-size:10px;letter-spacing:2px;color:#806e5a}
+@media(max-width:700px){.event-grid{grid-template-columns:1fr}.timer{gap:18px}.unit strong{font-size:40px}.names{font-size:72px}}
+</style>
+</head>
+<body>
+
+<section class="cover" id="home">
+  <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span>
+  <div class="content">
+    <div class="kicker">Together with their families</div>
+    <div class="names">Arjun</div>
+    <div class="weds">weds</div>
+    <div class="names">Meera</div>
+    <div class="date">18 · DECEMBER · 2026</div>
+    <a class="scroll" href="#story">Open Invitation ↓</a>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="ornament">✦</div>
+  <h2>A New Chapter Begins</h2>
+  <div class="divider"></div>
+  <p class="lead">
+    Two hearts, two families, one beautiful beginning.
+    With joyful hearts, Arjun & Meera invite you to celebrate
+    the day they promise to walk through life together.
+  </p>
+</section>
+
+<section class="events" id="events">
+  <div class="ornament">✦</div>
+  <h2>The Celebrations</h2>
+  <div class="event-grid">
+    <article class="card">
+      <div class="day">16 DECEMBER · 2026</div>
+      <h3>Mehndi</h3>
+      <p>5:00 PM onwards<br>Rosewood Garden<br>Patiala, Punjab</p>
+    </article>
+    <article class="card">
+      <div class="day">17 DECEMBER · 2026</div>
+      <h3>Sangeet</h3>
+      <p>7:00 PM onwards<br>The Grand Courtyard<br>Patiala, Punjab</p>
+    </article>
+    <article class="card">
+      <div class="day">18 DECEMBER · 2026</div>
+      <h3>Wedding</h3>
+      <p>11:00 AM onwards<br>Royal Heritage Palace<br>Patiala, Punjab</p>
+    </article>
+  </div>
+</section>
+
+<section class="countdown">
+  <div class="ornament">✦</div>
+  <h2>Counting Every Moment</h2>
+  <div class="timer">
+    <div class="unit"><strong id="days">00</strong><span>Days</span></div>
+    <div class="unit"><strong id="hours">00</strong><span>Hours</span></div>
+    <div class="unit"><strong id="mins">00</strong><span>Minutes</span></div>
+    <div class="unit"><strong id="secs">00</strong><span>Seconds</span></div>
+  </div>
+</section>
+
+<section class="rsvp">
+  <div class="ornament">✦</div>
+  <h2>We'd Love You There</h2>
+  <p>Your presence will make our celebration even more special. Please join us as we begin this beautiful journey.</p>
+  <a class="btn" href="https://wa.me/919999999999?text=Hello%20Arjun%20%26%20Meera!%20I%27d%20love%20to%20RSVP%20for%20your%20wedding." target="_blank">RSVP on WhatsApp</a>
+</section>
+
+<footer>MADE WITH LOVE · ARJUN & MEERA · 2026</footer>
+
+<script>
+const target = new Date("2026-12-18T11:00:00+05:30").getTime();
+function tick(){
+  const now = Date.now(), diff = Math.max(0,target-now);
+  const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000),
+        m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+  document.getElementById("days").textContent=String(d).padStart(2,"0");
+  document.getElementById("hours").textContent=String(h).padStart(2,"0");
+  document.getElementById("mins").textContent=String(m).padStart(2,"0");
+  document.getElementById("secs").textContent=String(s).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+</script>
+</body>
+</html>
