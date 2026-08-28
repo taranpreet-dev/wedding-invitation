@@ -1,6 +1,315 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#651f2b">
+<title>Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-<h1>Test</h1>
+
+<div id="preloader" class="preloader">
+  <div class="loader-ornament">❦</div>
+  <p>Preparing your invitation</p>
+  <strong>Meera &amp; Arjun</strong>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<audio id="weddingMusic" preload="auto" loop></audio>
+<button id="musicButton" class="music-button" type="button" aria-label="Play music">🔇</button>
+
+<section id="envelopeScreen" class="envelope-screen" aria-label="Open wedding invitation">
+  <div class="envelope-glow"></div>
+  <div class="floating-petal fp1">✦</div>
+  <div class="floating-petal fp2">❦</div>
+  <div class="floating-petal fp3">✦</div>
+
+  <div id="envelopeStage" class="envelope-stage">
+    <div class="envelope-shadow"></div>
+
+    <div id="envelope" class="envelope">
+      <div class="envelope-back"></div>
+
+      <div class="letter">
+        <div class="letter-inner">
+          <small>THE WEDDING OF</small>
+          <h2><span data-bind="bride"></span> &amp; <span data-bind="groom"></span></h2>
+          <span data-bind="date"></span>
+        </div>
+      </div>
+
+      <div class="envelope-left"></div>
+      <div class="envelope-right"></div>
+      <div class="envelope-bottom"></div>
+
+      <div class="flap">
+        <div class="flap-paper"></div>
+      </div>
+
+      <div class="seal-wrap">
+        <button id="sealButton" class="wax-seal" type="button" aria-label="Tap to open invitation">
+          <span>♥</span>
+        </button>
+        <p>TAP THE SEAL TO OPEN</p>
+      </div>
+    </div>
+
+    <div class="open-message">
+      <span>WELCOME</span>
+      <strong>Your invitation awaits</strong>
+    </div>
+  </div>
+</section>
+
+<main id="invitation" class="invitation hidden">
+
+  <div id="butterflies" aria-hidden="true"></div>
+
+  <section class="hero section">
+    <div class="hero-flower hero-flower-left">❦</div>
+    <div class="hero-flower hero-flower-right">❦</div>
+
+    <p class="eyebrow">WITH LOVE &amp; BLESSINGS</p>
+    <h1>
+      <span data-bind="bride"></span>
+      <i>&amp;</i>
+      <span data-bind="groom"></span>
+    </h1>
+    <p class="tagline" data-bind="tagline"></p>
+
+    <div class="hero-photo ornate-frame">
+      <img src="assets/images/couple.jpg" alt="Bride and groom" loading="eager">
+    </div>
+
+    <div class="hero-date">
+      <span data-bind="date"></span>
+      <b></b>
+      <span data-bind="time"></span>
+    </div>
+
+    <a class="discover" href="#discover">SCROLL TO DISCOVER <span>↓</span></a>
+  </section>
+
+  <section id="invocation" class="invocation section reveal">
+    <div class="ganesh">ॐ</div>
+    <p class="eyebrow">AUSPICIOUS BEGINNING</p>
+    <div class="sanskrit">ॐ श्री गणेशाय नमः</div>
+    <p>With the blessings of the Almighty and our beloved families, we invite you to celebrate the beginning of our forever.</p>
+    <div class="ornament">— ✦ ❦ ✦ —</div>
+  </section>
+
+  <section class="discover-section section reveal" id="discover">
+    <div class="section-heading">
+      <p class="eyebrow">A LITTLE SURPRISE</p>
+      <h2>Tap &amp; Reveal</h2>
+      <p>Tap each elegant card to discover the details of our celebration.</p>
+    </div>
+
+    <div class="reveal-cards">
+      <button class="reveal-card" type="button" data-reveal="date"
+              aria-expanded="false" aria-label="Reveal wedding date">
+        <span class="reveal-card-face reveal-card-front">
+          <span class="reveal-symbol">✦</span>
+          <small>OUR SPECIAL DAY</small>
+          <strong>Tap to reveal</strong>
+          <em>A DATE TO REMEMBER</em>
+          <span class="tap-hint">TAP <b>•</b> REVEAL</span>
+        </span>
+
+        <span class="reveal-card-face reveal-card-back">
+          <span class="back-ornament">❦</span>
+          <small>THE DAY WE BEGIN</small>
+          <strong data-bind="date"></strong>
+          <b class="date-rule"></b>
+          <span data-bind="time"></span>
+        </span>
+      </button>
+
+      <button class="reveal-card" type="button" data-reveal="venue"
+              aria-expanded="false" aria-label="Reveal wedding venue">
+        <span class="reveal-card-face reveal-card-front">
+          <span class="reveal-symbol">❦</span>
+          <small>OUR CELEBRATION</small>
+          <strong>Tap to reveal</strong>
+          <em>WHERE WE GATHER</em>
+          <span class="tap-hint">TAP <b>•</b> REVEAL</span>
+        </span>
+
+        <span class="reveal-card-face reveal-card-back">
+          <span class="back-ornament">✦</span>
+          <small>CELEBRATION VENUE</small>
+          <strong data-bind="venue"></strong>
+          <b class="date-rule"></b>
+          <span data-bind="address"></span>
+        </span>
+      </button>
+
+      <button class="reveal-card" type="button" data-reveal="message"
+              aria-expanded="false" aria-label="Reveal wedding message">
+        <span class="reveal-card-face reveal-card-front">
+          <span class="reveal-symbol">♥</span>
+          <small>FROM OUR HEARTS</small>
+          <strong>Tap to reveal</strong>
+          <em>ONE BEAUTIFUL FOREVER</em>
+          <span class="tap-hint">TAP <b>•</b> REVEAL</span>
+        </span>
+
+        <span class="reveal-card-face reveal-card-back">
+          <span class="back-ornament">❦</span>
+          <small>YOUR PRESENCE</small>
+          <strong>Means Everything</strong>
+          <b class="date-rule"></b>
+          <span>Come celebrate, laugh, dance &amp; bless us.</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <section class="countdown-section section reveal">
+    <p class="eyebrow">COUNTING EVERY MOMENT</p>
+    <h2>Until We Say “I Do”</h2>
+    <div class="countdown">
+      <div><strong id="days">00</strong><span>Days</span></div>
+      <div><strong id="hours">00</strong><span>Hours</span></div>
+      <div><strong id="minutes">00</strong><span>Minutes</span></div>
+      <div><strong id="seconds">00</strong><span>Seconds</span></div>
+    </div>
+    <p id="countdownDone" hidden>Today is the Big Day! ♥</p>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <p class="eyebrow">MEET THE COUPLE</p>
+      <h2>Two Souls, One Story</h2>
+    </div>
+
+    <div class="couple-grid">
+      <article class="person-card">
+        <div class="person-photo ornate-frame"><img src="assets/images/bride.jpg" alt="Bride" loading="lazy"></div>
+        <p class="eyebrow">THE BRIDE</p>
+        <h3 data-bind="bride"></h3>
+        <div class="ornament">✦</div>
+        <p>Beloved daughter of<br><b data-bind="brideParents"></b></p>
+        <p class="bio">A beautiful soul beginning a new chapter filled with love, laughter and endless memories.</p>
+      </article>
+
+      <article class="person-card">
+        <div class="person-photo ornate-frame"><img src="assets/images/groom.jpg" alt="Groom" loading="lazy"></div>
+        <p class="eyebrow">THE GROOM</p>
+        <h3 data-bind="groom"></h3>
+        <div class="ornament">✦</div>
+        <p>Beloved son of<br><b data-bind="groomParents"></b></p>
+        <p class="bio">A kind heart ready to begin a lifetime of beautiful adventures together.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="together section reveal">
+    <div class="together-photo ornate-frame"><img src="assets/images/couple2.jpg" alt="Couple together" loading="lazy"></div>
+    <div class="together-copy">
+      <p class="eyebrow">TOGETHER FOREVER</p>
+      <blockquote>“Two hearts, one promise, one beautiful forever.”</blockquote>
+      <div class="ornament">❦</div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <p class="eyebrow">OUR MEMORIES</p>
+      <h2>Moments We Treasure</h2>
+    </div>
+    <div id="gallery" class="gallery">
+      <button type="button" class="gallery-item tall" data-index="0"><img src="assets/images/gallery1.jpg" alt="Wedding memory" loading="lazy"></button>
+      <button type="button" class="gallery-item" data-index="1"><img src="assets/images/gallery2.jpg" alt="Wedding memory" loading="lazy"></button>
+      <button type="button" class="gallery-item" data-index="2"><img src="assets/images/gallery3.jpg" alt="Wedding memory" loading="lazy"></button>
+      <button type="button" class="gallery-item" data-index="3"><img src="assets/images/gallery4.jpg" alt="Wedding memory" loading="lazy"></button>
+      <button type="button" class="gallery-item wide" data-index="4"><img src="assets/images/gallery5.jpg" alt="Wedding memory" loading="lazy"></button>
+      <button type="button" class="gallery-item" data-index="5"><img src="assets/images/gallery6.jpg" alt="Wedding memory" loading="lazy"></button>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <p class="eyebrow">JOIN US</p>
+      <h2>Wedding Events</h2>
+    </div>
+    <div id="eventList" class="events"></div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <p class="eyebrow">WHERE TO FIND US</p>
+      <h2>The Venue</h2>
+    </div>
+    <article class="venue-card">
+      <img src="assets/images/venue.jpg" alt="Wedding venue" loading="lazy">
+      <div>
+        <p class="eyebrow">CELEBRATION VENUE</p>
+        <h3 data-bind="venue"></h3>
+        <p data-bind="address"></p>
+        <div class="actions">
+          <a id="mapsButton" class="primary-button" target="_blank" rel="noopener noreferrer">VIEW LOCATION</a>
+          <a id="directionsButton" class="outline-button" target="_blank" rel="noopener noreferrer">GET DIRECTIONS</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="rsvp section reveal">
+    <div class="rsvp-card">
+      <p class="eyebrow">KINDLY RESPOND</p>
+      <h2>Will You Join Us?</h2>
+      <p>Your presence will make our celebration even more special.</p>
+      <div class="rsvp-actions">
+        <button type="button" class="rsvp-button yes" data-rsvp="yes">YES, WITH PLEASURE</button>
+        <button type="button" class="rsvp-button no" data-rsvp="no">UNABLE TO ATTEND</button>
+      </div>
+      <p id="rsvpMessage" class="rsvp-message" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <p class="eyebrow">NEED ANYTHING?</p>
+      <h2>Contact Us</h2>
+    </div>
+    <div class="contacts">
+      <article class="contact-card">
+        <div class="contact-icon">♥</div>
+        <h3 data-bind="bride"></h3><p>Bride</p>
+        <a id="brideCall">CALL</a>
+        <a id="brideWhatsApp" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      </article>
+      <article class="contact-card">
+        <div class="contact-icon">♥</div>
+        <h3 data-bind="groom"></h3><p>Groom</p>
+        <a id="groomCall">CALL</a>
+        <a id="groomWhatsApp" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="ornament">✦ ❦ ✦</div>
+    <p>With love and blessings</p>
+    <h2><span data-bind="bride"></span> &amp; <span data-bind="groom"></span></h2>
+    <small data-bind="date"></small>
+  </footer>
+</main>
+
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button id="lightboxClose" type="button" aria-label="Close">×</button>
+  <button id="lightboxPrev" type="button" aria-label="Previous">‹</button>
+  <img id="lightboxImage" alt="Wedding photograph">
+  <button id="lightboxNext" type="button" aria-label="Next">›</button>
+</div>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
