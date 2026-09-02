@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Auspicious Union | Shubh Vivah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Rozha+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/palace-theme.css">
+    <link rel="stylesheet" href="css/scratch-jharokha.css">
+</head>
+<body>
 
+    <!-- Redesigned Royal Seal Entrance Overlay -->
+    <div id="toran-gate" class="gate-overlay">
+        <div class="palace-arch-header"></div>
+        <div class="gate-seal-card">
+            <div class="seal-inner-border">
+                <span class="gate-sub lora">You Are Cordially Invited</span>
+                <h1 class="hindi-title text-red">शुभ विवाह</h1>
+                <p class="gate-desc lora">Step inside to explore the celebrations, events, and family registry.</p>
+                <button id="enter-courtyard" class="marigold-btn">Open The Invitation</button>
+            </div>
+        </div>
+        <div class="palace-arch-footer"></div>
+    </div>
+
+    <!-- Hidden Audio -->
+    <audio id="bg-music" loop>
+        <source src="assets/audio/santoor-ambient.mp3" type="audio/mpeg">
+    </audio>
+
+    <main class="palace-container">
+        
+        <!-- Hero Section -->
+        <section class="courtyard-section hero-section">
+            <div class="mandala-frame">
+                <img src="assets/images/ganesha-motif.png" class="sacred-motif" alt="Om" onerror="this.style.display='none'">
+            </div>
+            <span class="subtitle-tag lora">The Wedding Celebration of</span>
+            <h2 class="cinzel text-red couple-names">Aarav & Ananya</h2>
+            <p class="lora date-badge">December 2026</p>
+        </section>
+
+        <!-- Lineage Section -->
+        <section class="courtyard-section">
+            <h3 class="cinzel text-gold">With the Blessings of Our Elders</h3>
+            <div class="lineage-pillars">
+                <div class="pillar">
+                    <h4 class="lora">The Sharma Family</h4>
+                    <p class="lora small-text">Invite you to celebrate the union of their beloved son</p>
+                </div>
+                <div class="pillar">
+                    <h4 class="lora">The Verma Family</h4>
+                    <p class="lora small-text">And their cherished daughter</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scratch Reveal Jharokha -->
+        <section class="courtyard-section">
+            <h3 class="cinzel text-red">The Couple</h3>
+            <p class="lora instruction">Gently swipe to reveal</p>
+            <div class="jharokha-frame">
+                <div class="scratch-container" id="scratch-container">
+                    <img src="assets/images/couple.jpg" alt="The Couple" class="scratch-base-img" onerror="this.src='https://via.placeholder.com/280x380/FDFBF7/B8860B?text=Couple+Image'">
+                    <canvas id="scratch-canvas"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section class="courtyard-section story-section">
+            <h3 class="cinzel text-gold">Our Journey</h3>
+            <p class="lora story-text">Two different worlds brought together by destiny, traditions, and family love. Join us as we step into a lifetime of shared memories and celebrations.</p>
+        </section>
+
+        <!-- NEW: Programme Schedule & Itinerary Section -->
+        <section class="courtyard-section programme-section">
+            <h3 class="cinzel text-gold">Programme Details</h3>
+            <p class="lora subtitle-tag" style="margin-bottom: 25px;">On Wednesday, 21st October 2026</p>
+            
+            <div class="programme-card">
+                <div class="programme-timeline-item">
+                    <span class="prog-time cinzel">5:00 PM</span>
+                    <div class="prog-details">
+                        <h4 class="lora text-red">Jago Ceremony</h4>
+                        <p class="lora">Traditional pre-wedding night celebrations & dancing.</p>
+                    </div>
+                </div>
+
+                <div class="programme-timeline-item">
+                    <span class="prog-time cinzel">7:00 PM</span>
+                    <div class="prog-details">
+                        <h4 class="lora text-red">Wedding Dinner & Reception</h4>
+                        <p class="lora">Feast and celebrations with family and friends.</p>
+                    </div>
+                </div>
+
+                <div class="programme-venue-box">
+                    <h4 class="cinzel text-gold">Venue</h4>
+                    <p class="lora venue-name">Shannon Community Center</p>
+                    <p class="lora venue-address">11600 Shannon Ave, Dublin, CA 94568</p>
+                    <a href="https://maps.google.com/?q=11600+Shannon+Ave,+Dublin,+CA+94568" target="_blank" class="lora location-link">
+                        📍 Open in Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="courtyard-section contact-section">
+            <h3 class="cinzel text-gold">Family Contact Directory</h3>
+            <p class="lora">Reach out to the hosts for any assistance.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4 class="lora">Groom's Side (Aarav's Family)</h4>
+                    <a href="tel:+919876543210" class="lora call-btn">📞 Call Mr. Rajesh Sharma</a>
+                </div>
+
+                <div class="contact-card">
+                    <h4 class="lora">Bride's Side (Ananya's Family)</h4>
+                    <a href="tel:+919123456789" class="lora call-btn bride-contact-link" data-fallback-number="Number updating soon">
+                        📞 Call Mr. Suresh Verma
+                    </a>
+                    <span class="lora fallback-notice hidden" style="font-size: 0.85rem; color: #888; margin-top: 5px; display:block;">
+                        (Bride's direct line updating shortly. Please contact groom's side for urgent queries)
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aashirwad (Diya) Altar -->
+        <section class="courtyard-section aashirwad-altar">
+            <h3 class="cinzel text-gold">Bestow Your Presence</h3>
+            <p class="lora">Tap to light the Diya and confirm your attendance.</p>
+            
+            <div class="diya-interactive" id="rsvp-diya">
+                <img src="assets/images/diya-unlit.png" id="diya-img" alt="Light the Diya" onerror="this.src='https://via.placeholder.com/150/FDFBF7/B8860B?text=Diya'">
+                <div class="flame-glow" id="flame-glow"></div>
+            </div>
+            
+            <p id="rsvp-status" class="lora status-text hidden">Your blessing has been received.</p>
+
+            <div class="wall-of-light">
+                <h4 class="lora">The Gathered Community</h4>
+                <div id="community-diyas" class="diya-grid"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/palace-engine.js"></script>
+    <script src="js/scratch-jharokha.js"></script>
+    <script src="js/aashirwad-rsvp.js"></script>
+    <script src="js/butterflies.js"></script>
+    <script src="js/contact-fallback.js"></script>
+</body>
+</html>

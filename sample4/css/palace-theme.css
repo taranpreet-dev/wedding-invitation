@@ -1,0 +1,427 @@
+:root {
+    --bg-ivory: #FDFBF7;
+    --red-sindoor: #8B0000;
+    --gold-antique: #B8860B;
+    --marigold: #E6A125;
+    --text-dark: #2C2C2C;
+}
+
+body {
+    background-color: var(--bg-ivory);
+    background-image: 
+        radial-gradient(var(--gold-antique) 0.6px, transparent 0.6px), 
+        radial-gradient(var(--gold-antique) 0.6px, var(--bg-ivory) 0.6px);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+    color: var(--text-dark);
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.cinzel { font-family: 'Cinzel', serif; }
+.lora { font-family: 'Lora', serif; }
+.hindi-title { 
+    font-family: 'Rozha One', serif; 
+    font-size: 3.5rem; 
+    letter-spacing: 2px;
+    margin: 10px 0 15px 0;
+}
+
+.text-gold { color: var(--gold-antique); }
+.text-red { color: var(--red-sindoor); }
+
+.palace-container {
+    max-width: 800px; 
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(253, 251, 247, 0.95); 
+    box-shadow: 0 0 60px rgba(184, 134, 11, 0.2);
+    border-left: 3px solid rgba(184, 134, 11, 0.3);
+    border-right: 3px solid rgba(184, 134, 11, 0.3);
+    position: relative;
+}
+
+.courtyard-section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    border-bottom: 2px dashed rgba(184, 134, 11, 0.25);
+    position: relative;
+}
+
+.hero-section {
+    padding-top: 40px;
+}
+
+.subtitle-tag {
+    font-size: 1.1rem;
+    color: var(--gold-antique);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.couple-names {
+    font-size: 3rem;
+    margin: 15px 0;
+    background: linear-gradient(to right, #8B0000, #b30000, #B8860B);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.date-badge {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    letter-spacing: 3px;
+    border-top: 1px solid var(--gold-antique);
+    border-bottom: 1px solid var(--gold-antique);
+    padding: 5px 20px;
+    margin-top: 10px;
+}
+
+.mandala-frame {
+    width: 90px;
+    height: 90px;
+    border: 2px solid var(--gold-antique);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(230, 161, 37, 0.2);
+}
+
+.sacred-motif {
+    width: 50px;
+}
+
+.lineage-pillars {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.story-text {
+    max-width: 600px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 15px;
+}
+
+.instruction {
+    color: var(--marigold);
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Redesigned Royal Entrance Seal Overlay */
+.gate-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--bg-ivory);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    border: 10px solid var(--gold-antique);
+}
+
+.palace-arch-header {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold-antique), var(--marigold));
+    border-bottom: 3px solid var(--red-sindoor);
+}
+
+.palace-arch-footer {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to top, var(--gold-antique), var(--marigold));
+    border-top: 3px solid var(--red-sindoor);
+}
+
+.gate-seal-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    border: 2px solid var(--gold-antique);
+    box-shadow: 0 10px 30px rgba(184, 134, 11, 0.2);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+}
+
+.seal-inner-border {
+    border: 1px dashed var(--gold-antique);
+    padding: 25px 15px;
+    border-radius: 10px;
+}
+
+.gate-sub {
+    color: var(--gold-antique);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.gate-desc {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.marigold-btn {
+    background-color: var(--marigold);
+    color: white;
+    border: 2px solid var(--gold-antique);
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 4px 15px rgba(230, 161, 37, 0.4);
+    transition: transform 0.2s;
+}
+.marigold-btn:active { transform: scale(0.95); }
+
+/* Programme Section Styling */
+.programme-card {
+    background: white;
+    border: 1px solid var(--gold-antique);
+    border-radius: 15px;
+    padding: 35px 25px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.programme-timeline-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(184, 134, 11, 0.15);
+    align-items: flex-start;
+}
+
+.prog-time {
+    font-size: 1.2rem;
+    color: var(--gold-antique);
+    font-weight: 700;
+    min-width: 90px;
+    background: rgba(184, 134, 11, 0.08);
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.prog-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.prog-details p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.programme-venue-box {
+    background: rgba(253, 251, 247, 0.8);
+    border: 1px dashed var(--gold-antique);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.programme-venue-box h4 {
+    margin: 0 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.venue-name {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.venue-address {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0 0 15px 0;
+}
+
+.location-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(184, 134, 11, 0.1);
+    color: var(--red-sindoor);
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    border: 1px solid rgba(184, 134, 11, 0.3);
+    transition: background 0.3s;
+}
+.location-link:hover {
+    background: rgba(184, 134, 11, 0.2);
+}
+
+/* Contact Section Styling */
+.contact-grid {
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contact-card {
+    background: white;
+    border: 1px solid var(--gold-antique);
+    border-radius: 12px;
+    padding: 20px;
+    width: 260px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+.contact-card h4 {
+    margin-top: 0;
+    color: var(--red-sindoor);
+}
+
+.call-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: var(--gold-antique);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+.call-btn:hover { opacity: 0.9; }
+
+/* Diya RSVP Styling */
+.diya-interactive {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 30px 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.diya-interactive:active { transform: scale(0.95); }
+
+#diya-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    position: relative;
+}
+
+.flame-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 60px;
+    background: radial-gradient(ellipse at center, rgba(255,204,0,1) 0%, rgba(255,102,0,0.6) 50%, rgba(255,0,0,0) 100%);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 1s ease;
+}
+
+.is-lit .flame-glow {
+    opacity: 1;
+    animation: flicker 0.15s infinite alternate;
+}
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    100% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.status-text {
+    color: var(--gold-antique);
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.diya-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+.mini-diya {
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #E6A125 20%, transparent 70%);
+    border-radius: 50%;
+    animation: flicker 1s infinite alternate;
+}
+
+.butterfly-emoji {
+    position: absolute;
+    font-size: 24px;
+    z-index: 999;
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+    animation: floatAround 14s ease-in-out infinite alternate;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+@keyframes floatAround {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    33% { transform: translate(70px, -90px) rotate(15deg) scale(1.1); }
+    66% { transform: translate(-50px, -150px) rotate(-12deg) scale(0.95); }
+    100% { transform: translate(40px, -220px) rotate(8deg) scale(1.05); }
+}
+
+.butterfly-emoji.flee {
+    animation: none !important;
+    transform: translate(var(--flee-x), var(--flee-y)) rotate(60deg) scale(0.4) !important;
+    opacity: 0;
+}
+
+@media (max-width: 600px) {
+    .lineage-pillars { flex-direction: column; gap: 20px; }
+    .couple-names { font-size: 2.2rem; }
+    .hindi-title { font-size: 2.8rem; }
+    .contact-grid { flex-direction: column; align-items: center; }
+    .programme-timeline-item { flex-direction: column; gap: 10px; }
+    .prog-time { width: 100%; text-align: left; }
+}
