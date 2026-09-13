@@ -1,1 +1,735 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Prabh &amp; Ashu — Royal Indian Wedding Celebration</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Cinzel Decorative, Great Vibes, Playfair Display, Montserrat -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&amp;family=Great+Vibes&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            royal: {
+              maroon: '#4A0E17',
+              crimson: '#7A1326',
+              deepWine: '#2C060D',
+              gold: '#D4AF37',
+              lightGold: '#F3E5AB',
+              accentGold: '#FFDF73',
+              paleGreen: '#F7F6EE',
+              sand: '#EFE7DA',
+            }
+          },
+          fontFamily: {
+            cinzel: ['"Cinzel Decorative"', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          },
+          boxShadow: {
+            'gold-glow': '0 0 25px rgba(212, 175, 55, 0.45)',
+            'royal-inner': 'inset 0 0 30px rgba(0,0,0,0.6)',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom Animations & Styles */
+    @keyframes floatPetal {
+      0% {
+        transform: translate3d(0, -60px, 0) rotate(0deg) rotateY(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.95;
+      }
+      90% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translate3d(var(--x-drift), 105vh, 0) rotate(var(--rot)) rotateY(360deg);
+        opacity: 0;
+      }
+    }
 
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(212,175,55,0.4)); }
+      50% { transform: scale(1.04); filter: drop-shadow(0 0 24px rgba(255,223,115,0.8)); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .shimmer-text {
+      background: linear-gradient(90deg, #D4AF37 0%, #FFF4CC 50%, #D4AF37 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    /* Fixed Rose Petals Wall covering the entire viewport everywhere */
+    .petal-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 25;
+      overflow: hidden;
+    }
+
+    .falling-petal {
+      position: absolute;
+      top: -60px;
+      pointer-events: none;
+      will-change: transform, opacity;
+      animation: floatPetal linear infinite;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+    }
+
+    /* Modal / Envelope Opener animation */
+    #curtain-overlay {
+      transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    
+    .gold-border-decor {
+      border: 2px solid transparent;
+      border-image: linear-gradient(to bottom right, #D4AF37, #FFDF73, #85581A, #D4AF37) 1;
+    }
+
+    /* Background Seamless Image Treatments */
+    .bg-royal-arch {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOuuyqXwYWQX4V24biOrZrPNMn4jgyAunQysc10kx_Zg4wenF9wpsa0XPvkSMB5SmQXGOLrKiaKJUn3ABunZw7JeIej_2b8Ne61Xp9bRkIbxl31-JNWYI4MmOfV-rE6QcD7m00JrAqjNvPeN1M1GGewVcwjVGTP7xfCmsXWaG9OKHCY_cxUy4cv_-UsDRsiOGsdjJnErGtZ1uanpfxAliUsK3eBsawG7m2MLza66_Rn8HExtzHvkHQdCisS3yeDKnRIXs');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .bg-floral-cream {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiLjjkR77h6T2yauy4tfjvGj45C82pWpUG3ECS663YUHLvVUf8RndTw6vT717Os7fToEKsaKmbIgM0TK4KUXVKp5eHaV9LmrwAuJgWU_WtBBm-8gkMZvPqtyGkFVkXmUjN-JWYrfXUBpQ8g8jNAiFL3kkLvuiO1Z2E_ZKnTP6UA_2Q89D1iDUWPdf-IVOn4SiOLnCM91NwRzgJuNtILKcuCMTJLhHU34uMW-nBqCFvGvVvSUUUwsK9Wz3IYzA4StWK_aY');
+      background-size: cover;
+      background-position: top center;
+      background-attachment: fixed;
+    }
+
+    .bg-floral-card {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpuUY1iEOKV_3esp8foOgHQ7yMcYRO0NzVLIKEswPf7T7F-D7Czuhgk6IqCG41NACCYweDqLB2bsVE9se5ny3gAhe-7lX7lGuJHU8YrXg0vBPpZTZ7cB_RN3A70k_gVGkEfX6D5cT2SnHp8t5BKAZR5hV2ZCCtSi8bXGUzPZPZUapm8kFnMdfsJpPckvkmNyzSr122z4lVpBOhYuZLQs6mNiW3Ql7OsgTIMu7I73vZCFKhhu9jymXjCe8YDvQdeOyeszE');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Custom audio wave visualization */
+    .music-bar {
+      animation: musicBounce 1.2s ease-in-out infinite alternate;
+    }
+    .music-bar:nth-child(2) { animation-delay: 0.2s; }
+    .music-bar:nth-child(3) { animation-delay: 0.4s; }
+    .music-bar:nth-child(4) { animation-delay: 0.1s; }
+    @keyframes musicBounce {
+      0% { height: 6px; }
+      100% { height: 22px; }
+    }
+  </style>
+</head>
+<body class="bg-[#2A050C] text-[#FAF5E8] font-sans antialiased selection:bg-royal-gold selection:text-royal-deepWine relative min-h-screen overflow-x-hidden">
+<!-- Wedding music: place music.mp3 in the same folder as this HTML file -->
+<audio id="wedding-music" src="music.mp3" loop preload="auto"></audio>
+<!-- ROSE PETALS WALL EVERYWHERE (Fixed covering full screen across all sections as user scrolls) -->
+<div class="petal-layer" id="petals-container"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 30px; height: 30px; left: 21.8657vw; --x-drift: -24.301644676056398px; --rot: 70deg; animation-duration: 10.2566s; animation-delay: 0.247818s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 42px; height: 42px; left: 98.3526vw; --x-drift: -76.01270541731874px; --rot: -209deg; animation-duration: 11.2018s; animation-delay: 0.391229s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 36px; height: 36px; left: 57.7515vw; --x-drift: -86.57033669191077px; --rot: 352deg; animation-duration: 9.89022s; animation-delay: 1.44884s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 37px; height: 37px; left: 23.191vw; --x-drift: -73.38429667104859px; --rot: 139deg; animation-duration: 8.76617s; animation-delay: 0.492256s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 42px; height: 42px; left: 42.6811vw; --x-drift: 90.32343060744309px; --rot: -172deg; animation-duration: 8.00977s; animation-delay: 2.70275s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 42px; height: 42px; left: 32.3939vw; --x-drift: 90.8438676392797px; --rot: -206deg; animation-duration: 7.90846s; animation-delay: 0.608743s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 24px; height: 24px; left: 23.4957vw; --x-drift: 133.56947023174408px; --rot: -243deg; animation-duration: 8.22557s; animation-delay: 1.38945s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 33px; height: 33px; left: 18.0526vw; --x-drift: -41.49800060767659px; --rot: 108deg; animation-duration: 10.0927s; animation-delay: 1.96203s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 31px; height: 31px; left: 68.0347vw; --x-drift: -26.2266913594543px; --rot: -268deg; animation-duration: 9.42409s; animation-delay: 2.45376s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 29px; height: 29px; left: 77.0049vw; --x-drift: 19.157330240733693px; --rot: -53deg; animation-duration: 7.13102s; animation-delay: 1.79911s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 34px; height: 34px; left: 26.8549vw; --x-drift: -45.51828803211172px; --rot: -75deg; animation-duration: 11.4203s; animation-delay: 0.558972s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 45px; height: 45px; left: 53.4533vw; --x-drift: -19.06923424527327px; --rot: 179deg; animation-duration: 11.472s; animation-delay: 2.4961s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 28px; height: 28px; left: 83.8905vw; --x-drift: 10.795114944046675px; --rot: -62deg; animation-duration: 9.76469s; animation-delay: 0.897186s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 42px; height: 42px; left: 13.394vw; --x-drift: 74.02499149054756px; --rot: 48deg; animation-duration: 10.2322s; animation-delay: 1.99238s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 40px; height: 40px; left: 54.6521vw; --x-drift: 71.40718541961633px; --rot: 176deg; animation-duration: 6.5582s; animation-delay: 2.03963s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 44px; height: 44px; left: 50.7334vw; --x-drift: 53.69627821200374px; --rot: -354deg; animation-duration: 9.20354s; animation-delay: 1.66085s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 28px; height: 28px; left: 90.2745vw; --x-drift: -22.18710621463799px; --rot: -358deg; animation-duration: 5.88131s; animation-delay: 1.84854s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 41px; height: 41px; left: 70.1553vw; --x-drift: 132.2291838973879px; --rot: -199deg; animation-duration: 5.87741s; animation-delay: 0.792483s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A" alt="" class="falling-petal" style="width: 22px; height: 22px; left: 61.1789vw; --x-drift: -26.670512835037673px; --rot: -254deg; animation-duration: 8.24904s; animation-delay: 2.09225s;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE" alt="" class="falling-petal" style="width: 23px; height: 23px; left: 64.6934vw; --x-drift: -11.046551605763701px; --rot: 194deg; animation-duration: 8.16371s; animation-delay: 1.92065s;"></div>
+<!-- FLOATING MUSIC & NAVIGATION CONTROLS -->
+<div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+<!-- Music toggle button -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-royal-gold/60 bg-royal-deepWine/85 backdrop-blur-md text-royal-gold hover:text-royal-accentGold hover:border-royal-gold transition-all duration-300 text-xs tracking-wider uppercase shadow-md pointer-events-auto" id="music-toggle" title="Toggle Shehnai / Sitar Ambient Melody">
+<div class="flex items-end gap-1 h-5 w-4 hidden" id="music-visualizer">
+<span class="w-1 bg-current rounded-full music-bar h-2"></span>
+<span class="w-1 bg-current rounded-full music-bar h-4"></span>
+<span class="w-1 bg-current rounded-full music-bar h-3"></span>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="music" aria-hidden="true" class="lucide lucide-music w-4 h-4 group-hover:scale-110 transition-transform" id="music-icon"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+<span class="text-xs font-semibold uppercase tracking-wider font-cinzel" id="music-text">Ambience</span>
+</button>
+</div>
+<!-- ========================================================================= -->
+<!-- 1. OPULENT GRAND ENVELOPE / OPENING CURTAIN (Full Cover Experience) -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-[#1A0307] bg-opacity-98 overflow-hidden transition-all duration-1000" id="curtain-overlay" style="opacity: 0; transform: scale(1.08); pointer-events: none; display: none;">
+<!-- Background Arch Image from user assets -->
+<div class="absolute inset-0 bg-royal-arch opacity-35 mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-radial-gradient from-transparent via-[#1A0307]/80 to-[#120104]"></div>
+<!-- Radial decorative light aura -->
+<div class="absolute w-[800px] h-[800px] rounded-full bg-royal-gold/10 blur-[130px] pointer-events-none" style="width: 600px; height: 600px; filter: blur(95px);"></div>
+<!-- Ornate Envelope Modal Box -->
+<div class="relative z-10 w-11/12 max-w-2xl text-center px-8 py-12 md:py-16 rounded-3xl border border-royal-gold/40 shadow-[0_0_80px_rgba(212,175,55,0.25)] backdrop-blur-xl bg-gradient-to-b from-[#3B0710]/95 via-[#29030A]/95 to-[#1D0206]/95">
+<!-- Top Auspicious Ganesha / Shloka motif -->
+<div class="mb-4">
+<span class="font-cinzel text-royal-gold/80 text-sm tracking-[0.35em] block uppercase font-bold">|| Shree Ganeshaya Namah ||</span>
+<div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-royal-gold to-transparent mx-auto mt-2"></div>
+</div>
+<!-- Royal Monogram & Seal -->
+<div class="relative inline-flex items-center justify-center my-4 group">
+<div class="w-24 h-24 rounded-full border-2 border-royal-gold flex items-center justify-center shadow-gold-glow bg-royal-deepWine/70 transform group-hover:rotate-12 transition-transform duration-700">
+<span class="font-cinzel text-3xl font-black text-royal-gold">P&amp;A</span>
+</div>
+<!-- Decorative subtle rose petal on seal -->
+<img alt="Rose Petal Decor" class="absolute -top-3 -right-4 w-10 h-10 transform rotate-45 pointer-events-none drop-shadow-md animate-pulse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD4kcyhH9WrL4VyoQpq46T3OxKm9Cv4rdxEEJ6nOBYAO7nBrtcEIZt6FY345WIA0kdVCH2XEl6CJM58VKH4bj79zZM__WnVmwjqW20ZkbY86cNab0r9FGYvaJnQ-_wFfcQlx-6M7cRvEW4dmOFTlnZdLQ5oX6hFIHWLvNlW09mfzjVBBFdN6EFQgpaJxm3FB6LnfY179PmjL2R225DZv-ztnX-KDRXrYz7F8M08U6Fh8E_qiKURcxsf6F-nLKKa20DeaU">
+</div>
+<p class="font-sans text-xs md:text-sm uppercase tracking-[0.4em] text-royal-gold/90 font-medium mt-3 mb-1">Royal Wedding Invitation</p>
+<h1 class="font-script text-5xl md:text-7xl text-royal-lightGold mb-3 drop-shadow-lg">Prabh &amp; Ashu</h1>
+<p class="font-serif italic text-royal-sand/85 text-sm md:text-base max-w-md mx-auto mb-8 font-light">
+        "Two souls, two families, bound together in sacred matrimonial grace and eternal celebration."
+      </p>
+<!-- Royal Seal "Open Invitation" Button with interactive animation -->
+<div class="relative inline-block">
+<button class="group relative px-10 py-4 rounded-full bg-gradient-to-r from-royal-gold via-royal-accentGold to-royal-gold text-royal-deepWine font-cinzel font-bold text-sm md:text-base tracking-[0.25em] uppercase shadow-[0_0_35px_rgba(212,175,55,0.6)] hover:shadow-[0_0_55px_rgba(255,223,115,0.9)] hover:scale-105 active:scale-95 transition-all duration-500 cursor-pointer flex items-center gap-3" id="open-invitation-btn">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail-open" aria-hidden="true" class="lucide lucide-mail-open w-5 h-5 text-royal-deepWine transform group-hover:rotate-12 transition-transform"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"></path><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"></path></svg>
+<span class="">Open Royal Patrika</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" aria-hidden="true" class="lucide lucide-sparkles w-4 h-4 text-royal-deepWine animate-bounce"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+</button>
+<span class="block text-[11px] font-sans tracking-widest text-royal-gold/70 mt-3 uppercase">Click to unseal the celebration</span>
+</div>
+<!-- Miniature decorative hanging borders -->
+<div class="flex justify-between items-center px-6 mt-8 opacity-40">
+<div class="h-[1px] flex-1 bg-gradient-to-r from-transparent to-royal-gold"></div>
+<div class="mx-3 text-royal-gold text-xs">✦ ✤ ✦</div>
+<div class="h-[1px] flex-1 bg-gradient-to-l from-transparent to-royal-gold"></div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 2. MAIN WEBSITE CONTENT (Reveals with seamless grand flow) -->
+<!-- ========================================================================= -->
+<main class="w-full relative" id="main-content">
+<!-- FLOATING NAVBAR (appears after opening) -->
+<nav class="sticky top-0 z-40 w-full backdrop-blur-md bg-[#23040A]/90 border-b border-royal-gold/30 px-6 py-4 shadow-xl">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<a class="font-cinzel text-lg md:text-xl font-bold tracking-widest text-royal-gold flex items-center gap-2" href="#hero">
+<span class="">PRABH</span>
+<span class="text-xs text-royal-accentGold">❤</span>
+<span class="">ASHU</span>
+</a>
+<div class="hidden md:flex items-center gap-8 text-xs font-cinzel font-semibold uppercase tracking-widest text-royal-sand/90">
+<a class="hover:text-royal-accentGold transition-colors" href="#couple">The Couple</a>
+<a class="hover:text-royal-accentGold transition-colors" href="#itinerary">Celebrations</a>
+<a class="hover:text-royal-accentGold transition-colors" href="#venue">Palace Venue</a>
+<a class="hover:text-royal-accentGold transition-colors" href="#wishes">Send Wishes</a>
+
+</div>
+</div>
+</nav>
+<!-- ========================================== -->
+<!-- HERO SECTION: THE ROYAL GOLD FRAME & DATES -->
+<!-- ========================================== -->
+<section class="relative min-h-[92vh] flex items-center justify-center px-4 py-16 overflow-hidden" id="hero">
+<!-- Background Palace Arch Pattern with overlay -->
+<div class="absolute inset-0 bg-royal-arch opacity-30 mix-blend-color-dodge"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-[#250308]/90 via-[#3A0711]/75 to-[#200307]"></div>
+<div class="relative z-10 max-w-5xl mx-auto text-center">
+<!-- Ornate Gold Frame with nested Invitation card -->
+<div class="relative mx-auto w-full max-w-3xl px-2 py-4">
+<div class="relative mx-auto max-w-xl p-3 transform transition-all">
+<div class="relative rounded-2xl border-2 border-royal-gold/50 bg-[#2A050C]/90 backdrop-blur-md p-4 sm:p-6 shadow-2xl text-center overflow-hidden">
+<div class="absolute -top-10 -left-10 w-36 h-36 rounded-full bg-royal-gold/10 pointer-events-none" style="filter: blur(28px);"></div>
+<div class="absolute -bottom-10 -right-10 w-36 h-36 rounded-full bg-royal-crimson/20 pointer-events-none" style="filter: blur(28px);"></div>
+<p class="font-cinzel text-xs uppercase tracking-[0.3em] text-royal-gold/90 font-bold mb-1">Together With Their Families</p>
+<div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-royal-gold to-transparent mx-auto mb-2"></div>
+<h2 class="font-script text-3xl sm:text-4xl text-royal-lightGold mb-1">Prabh &amp; Ashu</h2>
+<p class="font-serif italic text-royal-sand/85 text-xs sm:text-sm max-w-sm mx-auto mb-4 font-light">Request the honour of your presence at their wedding celebration</p>
+<div class="grid grid-cols-3 gap-2 py-3 border-y border-royal-gold/30 text-center">
+<div class="border-r border-royal-gold/20 pr-1">
+<span class="font-cinzel text-[10px] tracking-wider text-royal-gold block uppercase">Date</span>
+<span class="font-serif text-xs text-royal-lightGold font-semibold">14th Dec 2025</span>
+</div>
+<div class="border-r border-royal-gold/20 px-1">
+<span class="font-cinzel text-[10px] tracking-wider text-royal-gold block uppercase">Auspicious Time</span>
+<span class="font-serif text-xs text-royal-lightGold font-semibold">07:00 PM IST</span>
+</div>
+<div class="pl-1">
+<span class="font-cinzel text-[10px] tracking-wider text-royal-gold block uppercase">Destination</span>
+<span class="font-serif text-xs text-royal-lightGold font-semibold">Udaipur, Raj.</span>
+</div>
+</div>
+<div class="mt-4">
+<button class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-royal-gold/70 bg-gradient-to-r from-royal-deepWine to-[#3B0710] text-royal-lightGold hover:text-royal-deepWine hover:bg-royal-gold text-xs font-cinzel tracking-widest uppercase shadow-md transition-all cursor-pointer" id="shower-petals-btn">
+<svg class="lucide lucide-sparkles text-royal-gold" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path></svg>
+                  Shower Blessings (Petals)
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Scroll down indicator -->
+<div class="mt-8 flex flex-col items-center justify-center animate-bounce">
+<span class="text-[11px] font-cinzel tracking-[0.3em] uppercase text-royal-gold/75 mb-2">Scroll To Discover Celebrations</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" aria-hidden="true" class="lucide lucide-chevron-down w-5 h-5 text-royal-gold"><path d="m6 9 6 6 6-6"></path></svg>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 2: THE SACRED UNION (COUPLE STORY) -->
+<!-- ========================================== -->
+<section class="relative py-24 px-6 bg-floral-cream text-[#2A050C]" id="couple">
+<!-- Overlay wash for readability while preserving vintage floral artwork -->
+<div class="absolute inset-0 bg-[#FBF9F1]/85 backdrop-blur-[1px]"></div>
+<div class="relative z-10 max-w-6xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="font-cinzel text-xs uppercase tracking-[0.4em] text-royal-crimson font-bold block mb-2">The Blessed Union</span>
+<h2 class="font-serif text-4xl md:text-5xl font-bold text-[#3B0710] mb-4">Meet The Bride &amp; Groom</h2>
+<div class="w-20 h-[2px] bg-royal-gold mx-auto mb-4"></div>
+<p class="font-sans text-sm md:text-base text-[#523037] leading-relaxed">
+            From childhood friends in the royal courtyards of Jaipur to soulmates embarking on their sacred Saptapadi.
+          </p>
+</div>
+<!-- Couple Cards with rich Indian motifs -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+<!-- Groom Card -->
+<div class="relative bg-white/90 p-8 md:p-10 rounded-2xl shadow-xl border border-royal-gold/40 flex flex-col items-center text-center transform hover:-translate-y-2 transition-transform duration-500">
+<div class="absolute -top-5 w-10 h-10 bg-royal-crimson text-royal-gold rounded-full flex items-center justify-center shadow-lg border border-royal-gold text-xs font-cinzel font-bold">G</div>
+<div class="w-36 h-36 rounded-full border-4 border-royal-gold p-1.5 shadow-md mb-6 relative overflow-hidden bg-gradient-to-tr from-[#3B0710] to-[#7A1326] flex items-center justify-center">
+<span class="font-cinzel text-4xl font-bold text-royal-lightGold">P</span>
+<img alt="Rose motif" class="absolute bottom-1 right-2 w-8 h-8 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5zQlt7TzHGgPDtNqXE1piK_nHP1wE0L4FuOooj2KfP7QWc0d9n3dpR9emAEq7U8mdAbhV9-U7ND_V_-mswZoQKYF8-nA-85MCg_Lp0wKt_BHrHkDHNz1DDIJ9xr4ODajOqxaJ47HULgYdP6KyK7oggUUIv7bODGjZLZ4Ndg2iwGXUO3WMwqlYrQ9unOapI3PCHNDJ7FjuR-xk3j7boCRRUfo__l6MfnWYOYZgLkafzLov7skB6yhwLQ0wjLrwQ0fcpFg">
+</div>
+<h3 class="font-serif text-2xl md:text-3xl font-bold text-[#2A050C]">Prabh</h3>
+<p class="font-cinzel text-xs tracking-widest text-royal-crimson font-bold uppercase mt-1 mb-4">Son of Smt. Sunita &amp; Shri Vikram</p>
+<p class="font-sans text-sm text-[#4E3237] leading-relaxed mb-6 italic">"An entrepreneur with an affinity for heritage architecture and classical sitar, Prabh found his eternal melody in Ashu's infectious laughter."</p>
+<div class="mt-auto w-full pt-4 border-t border-royal-gold/20 flex justify-around text-xs font-cinzel text-royal-crimson font-semibold">
+<span class="">B.Tech &amp; MBA</span>
+<span class="">•</span>
+<span class="">Jaipur &amp; London</span>
+</div>
+</div>
+<!-- Bride Card -->
+<div class="relative bg-white/90 p-8 md:p-10 rounded-2xl shadow-xl border border-royal-gold/40 flex flex-col items-center text-center transform hover:-translate-y-2 transition-transform duration-500">
+<div class="absolute -top-5 w-10 h-10 bg-royal-crimson text-royal-gold rounded-full flex items-center justify-center shadow-lg border border-royal-gold text-xs font-cinzel font-bold">b</div>
+<div class="w-36 h-36 rounded-full border-4 border-royal-gold p-1.5 shadow-md mb-6 relative overflow-hidden bg-gradient-to-tr from-[#7A1326] to-[#3B0710] flex items-center justify-center">
+<span class="font-cinzel text-4xl font-bold text-royal-lightGold">A</span>
+<img alt="Rose motif" class="absolute top-1 left-2 w-8 h-8 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXfvsrCuRe3EIU3XBkCZ4VnAE7uIWQEOcuP2ObvqARHg7xOS3wBlPSqsjPF5LAiH7_acervF-ngmB6BXOV9Jd0WDX5mYDMzCYz2Gaj4zILa1G04vtuvul9mCJVzfdv6zx486C3qNdBDaGj1SeM9Psm5IfMpa-FZ2fm0C8KnJ9KM3AuVrVqIf69sdXlk630yqBFtrsxAdihpYmC24IEF_I7wy_pvuDIFAK5e1RjM9tG-XdGzGZVtokhs43qqKyMLFOKUTw">
+</div>
+<h3 class="font-serif text-2xl md:text-3xl font-bold text-[#2A050C]">Ashu</h3>
+<p class="font-cinzel text-xs tracking-widest text-royal-crimson font-bold uppercase mt-1 mb-4">Daughter of Smt. Gayatri &amp; Shri Mahendra</p>
+<p class="font-sans text-sm text-[#4E3237] leading-relaxed mb-6 italic">"A conservation architect and trained Kathak artist, Ashu brings timeless elegance and heartfelt warmth to every soul she encounters."</p>
+<div class="mt-auto w-full pt-4 border-t border-royal-gold/20 flex justify-around text-xs font-cinzel text-royal-crimson font-semibold">
+<span class="">Master of Architecture</span>
+<span class="">•</span>
+<span class="">Udaipur</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 3: GRAND WEDDING ITINERARY / CEREMONIES -->
+<!-- ========================================== -->
+<section class="relative py-28 px-6 bg-[#25040B] text-royal-sand" id="itinerary">
+<div class="absolute inset-0 bg-royal-arch opacity-20"></div>
+<div class="relative z-10 max-w-6xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-20">
+<span class="font-cinzel text-xs uppercase tracking-[0.4em] text-royal-gold font-bold block mb-2">Festive Celebrations</span>
+<h2 class="font-serif text-4xl md:text-5xl font-bold text-royal-lightGold mb-4">Wedding Itinerary</h2>
+<div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-royal-gold to-transparent mx-auto mb-4"></div>
+<p class="font-sans text-sm md:text-base text-royal-sand/80">
+            Join us for three unforgettable days of music, color, dance, and timeless Vedic rituals.
+          </p>
+</div>
+<!-- Interactive Ceremony Timeline -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Event 1: Mehendi -->
+<div class="bg-gradient-to-b from-[#3E0913] to-[#2B050D] p-6 rounded-2xl border border-royal-gold/30 hover:border-royal-gold transition-all duration-300 group hover:shadow-gold-glow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-royal-gold text-xs font-cinzel mb-4">
+<span class="">DAY 01</span>
+<span class="px-2 py-0.5 rounded bg-royal-gold/20 border border-royal-gold/40">13 DEC</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-royal-gold/10 border border-royal-gold/40 flex items-center justify-center text-royal-accentGold mb-4 group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="flower" aria-hidden="true" class="lucide lucide-flower w-6 h-6"><circle cx="12" cy="12" r="3"></circle><path d="M12 16.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 1 1 4.5 4.5 4.5 4.5 0 1 1-4.5 4.5"></path><path d="M12 7.5V9"></path><path d="M7.5 12H9"></path><path d="M16.5 12H15"></path><path d="M12 16.5V15"></path><path d="m8 8 1.88 1.88"></path><path d="M14.12 9.88 16 8"></path><path d="m8 16 1.88-1.88"></path><path d="M14.12 14.12 16 16"></path></svg>
+</div>
+<h3 class="font-serif text-2xl font-bold text-royal-lightGold mb-1">Mehendi &amp; Kiwaad</h3>
+<p class="font-script text-xl text-royal-gold/90 mb-3">Henna &amp; Folk Melodies</p>
+<div class="space-y-1.5 text-xs text-royal-sand/80 mb-6">
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-3.5 h-3.5 text-royal-gold"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> 02:00 PM Onwards</p>
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-3.5 h-3.5 text-royal-gold"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> Zenana Courtyard, City Palace</p>
+<p class="flex items-center gap-2 text-royal-lightGold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shirt" aria-hidden="true" class="lucide lucide-shirt w-3.5 h-3.5 text-royal-gold"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg> Attire: Yellow &amp; Mehndi Green</p>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg bg-royal-deepWine border border-royal-gold/40 text-royal-gold hover:bg-royal-gold hover:text-royal-deepWine text-xs font-cinzel font-semibold tracking-wider transition-colors" onclick="alert('Mehendi reminder added to calendar!')">
+              Add To Calendar
+            </button>
+</div>
+<!-- Event 2: Sangeet Night -->
+<div class="bg-gradient-to-b from-[#3E0913] to-[#2B050D] p-6 rounded-2xl border border-royal-gold/30 hover:border-royal-gold transition-all duration-300 group hover:shadow-gold-glow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-royal-gold text-xs font-cinzel mb-4">
+<span class="">DAY 01 (NIGHT)</span>
+<span class="px-2 py-0.5 rounded bg-royal-gold/20 border border-royal-gold/40">13 DEC</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-royal-gold/10 border border-royal-gold/40 flex items-center justify-center text-royal-accentGold mb-4 group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="disc-3" aria-hidden="true" class="lucide lucide-disc-3 w-6 h-6"><circle cx="12" cy="12" r="10"></circle><path d="M6 12c0-1.7.7-3.2 1.8-4.2"></path><circle cx="12" cy="12" r="2"></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path></svg>
+</div>
+<h3 class="font-serif text-2xl font-bold text-royal-lightGold mb-1">Royal Sangeet</h3>
+<p class="font-script text-xl text-royal-gold/90 mb-3">A Night of Dholak &amp; Dance</p>
+<div class="space-y-1.5 text-xs text-royal-sand/80 mb-6">
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-3.5 h-3.5 text-royal-gold"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> 07:30 PM</p>
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-3.5 h-3.5 text-royal-gold"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> Manek Chowk Promenade</p>
+<p class="flex items-center gap-2 text-royal-lightGold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shirt" aria-hidden="true" class="lucide lucide-shirt w-3.5 h-3.5 text-royal-gold"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg> Attire: Shimmer &amp; Indo-Western</p>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg bg-royal-deepWine border border-royal-gold/40 text-royal-gold hover:bg-royal-gold hover:text-royal-deepWine text-xs font-cinzel font-semibold tracking-wider transition-colors" onclick="alert('Sangeet reminder added to calendar!')">
+              Add To Calendar
+            </button>
+</div>
+<!-- Event 3: Haldi & Chooda -->
+<div class="bg-gradient-to-b from-[#3E0913] to-[#2B050D] p-6 rounded-2xl border border-royal-gold/30 hover:border-royal-gold transition-all duration-300 group hover:shadow-gold-glow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-royal-gold text-xs font-cinzel mb-4">
+<span class="">DAY 02</span>
+<span class="px-2 py-0.5 rounded bg-royal-gold/20 border border-royal-gold/40">14 DEC</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-royal-gold/10 border border-royal-gold/40 flex items-center justify-center text-royal-accentGold mb-4 group-hover:scale-110 transition-transform">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sun" aria-hidden="true" class="lucide lucide-sun w-6 h-6"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+</div>
+<h3 class="font-serif text-2xl font-bold text-royal-lightGold mb-1">Haldi &amp; Rasam</h3>
+<p class="font-script text-xl text-royal-gold/90 mb-3">Turmeric Blessings</p>
+<div class="space-y-1.5 text-xs text-royal-sand/80 mb-6">
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-3.5 h-3.5 text-royal-gold"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> 10:00 AM</p>
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-3.5 h-3.5 text-royal-gold"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> Lakeside Pavilion, Pichola</p>
+<p class="flex items-center gap-2 text-royal-lightGold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shirt" aria-hidden="true" class="lucide lucide-shirt w-3.5 h-3.5 text-royal-gold"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg> Attire: Sunshine Yellow &amp; White</p>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg bg-royal-deepWine border border-royal-gold/40 text-royal-gold hover:bg-royal-gold hover:text-royal-deepWine text-xs font-cinzel font-semibold tracking-wider transition-colors" onclick="alert('Haldi reminder added to calendar!')">
+              Add To Calendar
+            </button>
+</div>
+<!-- Event 4: The Royal Vivah (Main Wedding) -->
+<div class="relative bg-gradient-to-b from-[#560C1A] to-[#3B0712] p-6 rounded-2xl border-2 border-royal-gold shadow-[0_0_30px_rgba(212,175,55,0.4)] flex flex-col justify-between transform lg:-translate-y-2">
+<div>
+<div class="flex items-center justify-between gap-2 mb-4">
+<span class="text-[10px] tracking-widest text-royal-accentGold/90 font-semibold uppercase">DAY 03 (NIGHT)</span>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] bg-royal-gold/25 text-royal-accentGold border border-royal-gold/60 font-semibold uppercase tracking-wider">AUSPICIOUS MUHURAT</span>
+<span class="px-2.5 py-0.5 rounded-full text-xs bg-royal-crimson text-royal-lightGold border border-royal-gold/40 font-semibold">15 DEC</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-royal-gold/20 border border-royal-gold flex items-center justify-center text-royal-accentGold mb-4">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" aria-hidden="true" class="lucide lucide-sparkles w-6 h-6"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+</div>
+<h3 class="font-serif text-2xl font-bold text-white mb-1">The Royal Vivah</h3>
+<p class="font-script text-xl text-royal-accentGold mb-3">Varmala &amp; Saptapadi</p>
+<div class="space-y-1.5 text-xs text-royal-sand mb-6">
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" aria-hidden="true" class="lucide lucide-clock w-3.5 h-3.5 text-royal-gold"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> Baraat: 06:00 PM | Phere: 08:30 PM</p>
+<p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin w-3.5 h-3.5 text-royal-gold"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg> Jagmandir Island Palace, Udaipur</p>
+<p class="flex items-center gap-2 text-royal-accentGold font-medium"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shirt" aria-hidden="true" class="lucide lucide-shirt w-3.5 h-3.5 text-royal-gold"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg> Attire: Royal Traditional / Sherwani &amp; Lehengas</p>
+</div>
+</div>
+<button class="w-full py-2 px-4 text-xs font-serif rounded-lg bg-royal-gold text-royal-deepWine hover:bg-royal-accentGold font-bold tracking-wider uppercase transition-colors shadow-md" onclick="alert('Royal Vivah reminder added to calendar!')">
+              Add To Calendar
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 4: VENUE & HOSPITALITY DETAILS -->
+<!-- ========================================== -->
+<section class="relative py-24 px-6 bg-floral-card text-[#2A050C]" id="venue">
+<div class="absolute inset-0 bg-[#FFFDF5]/90"></div>
+<div class="relative z-10 max-w-6xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="font-cinzel text-xs uppercase tracking-[0.4em] text-royal-crimson font-bold block mb-2">The Royal Abode</span>
+<h2 class="font-serif text-4xl md:text-5xl font-bold text-[#3B0710] mb-4">Jagmandir Island Palace</h2>
+<div class="w-20 h-[2px] bg-royal-gold mx-auto mb-4"></div>
+<p class="font-sans text-sm md:text-base text-[#523037]">
+            Surrounded by the calm waters of Lake Pichola, Udaipur, Rajasthan.
+          </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+<!-- Hospitality Feature 1 -->
+<div class="bg-white/95 p-6 rounded-2xl border border-royal-gold/40 shadow-lg text-center">
+<div class="w-14 h-14 mx-auto rounded-full bg-royal-crimson/10 text-royal-crimson flex items-center justify-center mb-4">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="anchor" aria-hidden="true" class="lucide lucide-anchor w-7 h-7"><path d="M12 6v16"></path><path d="m19 13 2-1a9 9 0 0 1-18 0l2 1"></path><path d="M9 11h6"></path><circle cx="12" cy="4" r="2"></circle></svg>
+</div>
+<h4 class="font-serif font-bold text-xl text-[#3B0710] mb-2">Royal Boat Transfers</h4>
+<p class="font-sans text-xs text-[#523037] leading-relaxed">
+              Continuous private jetty transfers will be operating between Rameshwar Ghat and Jagmandir Island starting at 04:30 PM.
+            </p>
+</div>
+<!-- Central Map & Location Pin -->
+<div class="bg-gradient-to-b from-[#3F0812] to-[#25040B] p-8 rounded-2xl border-2 border-royal-gold shadow-2xl text-center text-royal-sand">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="compass" aria-hidden="true" class="lucide lucide-compass w-10 h-10 text-royal-gold mx-auto mb-3 animate-spin" style="animation-duration: 20s;"><circle cx="12" cy="12" r="10"></circle><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path></svg>
+<h3 class="font-cinzel text-xl font-bold text-royal-lightGold mb-2">Navigating The Venue</h3>
+<p class="font-sans text-xs text-royal-sand/80 mb-6">
+              Jagmandir Island Palace, Lake Pichola, Udaipur, Rajasthan 313001
+            </p>
+<div class="space-y-3">
+<a class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-royal-gold text-royal-deepWine font-cinzel text-xs font-bold uppercase tracking-wider hover:bg-royal-accentGold transition-all shadow-md" href="https://maps.google.com/?q=Jagmandir+Palace+Udaipur" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map" aria-hidden="true" class="lucide lucide-map w-4 h-4"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+<span class="">Open Google Maps</span>
+</a>
+<p class="text-[11px] text-royal-gold/70 block">Airport: 25 km (Maharana Pratap Airport)</p>
+</div>
+</div>
+<!-- Hospitality Feature 3 -->
+<div class="bg-white/95 p-6 rounded-2xl border border-royal-gold/40 shadow-lg text-center">
+<div class="w-14 h-14 mx-auto rounded-full bg-royal-crimson/10 text-royal-crimson flex items-center justify-center mb-4">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart-handshake" aria-hidden="true" class="lucide lucide-heart-handshake w-7 h-7"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"></path></svg>
+</div>
+<h4 class="font-serif font-bold text-xl text-[#3B0710] mb-2">Atithi Devo Bhava</h4>
+<p class="font-sans text-xs text-[#523037] leading-relaxed">
+              Dedicated hospitality helpdesk for flight coordination, royal safa tying, and personalized room check-ins.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- SECTION 5: INTERACTIVE RSVP SECTION -->
+<!-- ========================================== -->
+<section class="relative py-28 px-6 bg-[#200308] text-royal-sand overflow-hidden" id="wishes"><div class="absolute inset-0 bg-royal-arch opacity-25"></div><div class="relative z-10 max-w-5xl mx-auto"><div class="text-center max-w-3xl mx-auto mb-16"><span class="font-cinzel text-xs uppercase tracking-[0.4em] text-royal-gold font-bold block mb-2">Shubhkamnayein &amp; Blessings</span><h2 class="font-serif text-4xl md:text-5xl font-bold text-royal-lightGold mb-3">Send Your Warm Wishes to Prabh &amp; Ashu</h2><div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-royal-gold to-transparent mx-auto mb-4"></div><p class="font-sans text-sm md:text-base text-royal-sand/80 leading-relaxed">Distance holds no boundary for love and sacred blessings. Convey your heartfelt congratulations, shlokas, and warm wishes directly to the family.</p></div><div class="max-w-3xl mx-auto bg-gradient-to-b from-[#3E0913]/95 via-[#2F060E]/95 to-[#210309]/95 p-8 md:p-10 rounded-3xl border border-royal-gold/50 shadow-2xl backdrop-blur-xl text-center relative overflow-hidden"><div class="absolute -top-10 -left-10 w-36 h-36 rounded-full bg-royal-gold/10 pointer-events-none" style="filter: blur(30px);"></div><div class="absolute -bottom-10 -right-10 w-36 h-36 rounded-full bg-royal-crimson/20 pointer-events-none" style="filter: blur(30px);"></div><div class="w-16 h-16 mx-auto rounded-full bg-royal-gold/15 border border-royal-gold/60 flex items-center justify-center text-royal-accentGold mb-4 shadow-gold-glow"><span class="font-cinzel text-2xl">ॐ</span></div><p class="font-cinzel text-xs tracking-widest text-royal-gold/80 uppercase mb-2">Send Your Wishes Directly</p><div class="font-serif text-3xl md:text-4xl font-bold text-royal-lightGold tracking-wide mb-6">Direct Family Contact</div><div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"><a href="https://wa.me/919592620529?text=Heartiest%20congratulations%20and%20warmest%20blessings%20to%20Prabh%20and%20Ashu%20on%20their%20auspicious%20wedding!" target="_blank" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-royal-gold via-royal-accentGold to-royal-gold text-royal-deepWine font-cinzel font-bold text-xs md:text-sm uppercase tracking-[0.2em] shadow-gold-glow hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-2"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.276-.1-.477-.15-.678.15-.2.3-.778.979-.954 1.18-.175.2-.351.226-.652.075-.3-.15-1.267-.467-2.414-1.49-.893-.796-1.496-1.78-1.672-2.08-.175-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.176.2-.301.301-.502.101-.201.05-.376-.025-.527-.075-.15-.678-1.635-.93-2.238-.244-.588-.493-.509-.677-.518l-.577-.01c-.201 0-.527.075-.803.376-.276.301-1.054 1.03-1.054 2.511 0 1.482 1.079 2.912 1.23 3.113.15.201 2.123 3.243 5.144 4.549.719.311 1.28.497 1.718.636.722.23 1.378.197 1.897.12.578-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.429-.076-.125-.276-.2-.577-.35zM12.042 2C6.502 2 2.01 6.492 2.01 12.032c0 1.954.56 3.78 1.53 5.334L2 22l4.793-1.498a9.98 9.98 0 0 0 5.249 1.492h.004c5.539 0 10.03-4.492 10.03-10.032A10.03 10.03 0 0 0 12.042 2z"></path></svg><span class="">Send Blessings via WhatsApp</span></a><a href="tel:+919592620529" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-royal-gold/60 text-royal-gold font-cinzel text-xs uppercase tracking-wider hover:bg-royal-gold hover:text-royal-deepWine transition-all flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span class="">Call or Message (Direct Family Contact)</span></a></div><div class="border-t border-royal-gold/20 pt-6 text-left"><p class="font-cinzel text-xs tracking-wider text-royal-gold uppercase mb-3 text-center sm:text-left">Tap a blessing to copy or send:</p><div class="grid grid-cols-1 md:grid-cols-3 gap-3"><a href="https://wa.me/919592620529?text=May%20your%20union%20be%20blessed%20with%20endless%20happiness,%20love,%20and%20prosperity!%20Shubh%20Vivah!" target="_blank" class="p-3.5 rounded-xl bg-black/40 border border-royal-gold/30 hover:border-royal-gold transition-all text-xs font-serif italic text-royal-sand/90 hover:text-royal-lightGold block text-left group"><span class="block text-royal-accentGold mb-1 text-[10px] font-sans uppercase font-bold tracking-wider">Blessing 1 ➔</span>"May your union be blessed with endless happiness, love, and prosperity! Shubh Vivah!"</a><a href="https://wa.me/919592620529?text=Wishing%20Prabh%20and%20Ashu%20a%20lifetime%20of%20laughter,%20harmony,%20and%20togetherness." target="_blank" class="p-3.5 rounded-xl bg-black/40 border border-royal-gold/30 hover:border-royal-gold transition-all text-xs font-serif italic text-royal-sand/90 hover:text-royal-lightGold block text-left group"><span class="block text-royal-accentGold mb-1 text-[10px] font-sans uppercase font-bold tracking-wider">Blessing 2 ➔</span>"Wishing Prabh and Ashu a lifetime of laughter, harmony, and togetherness."</a><a href="https://wa.me/919592620529?text=Heartiest%20congratulations%20to%20the%20lovely%20couple%20on%20embarking%20upon%20their%20sacred%20Saptapadi%20journey." target="_blank" class="p-3.5 rounded-xl bg-black/40 border border-royal-gold/30 hover:border-royal-gold transition-all text-xs font-serif italic text-royal-sand/90 hover:text-royal-lightGold block text-left group"><span class="block text-royal-accentGold mb-1 text-[10px] font-sans uppercase font-bold tracking-wider">Blessing 3 ➔</span>"Heartiest congratulations to the lovely couple on embarking upon their sacred Saptapadi journey."</a></div></div></div></div></section>
+<!-- ========================================== -->
+<!-- SECTION 6: INTERACTIVE BLESSINGS WALL -->
+<!-- ========================================== -->
+
+<!-- ========================================== -->
+<!-- FOOTER: REGAL FAREWELL & CONTACT -->
+<!-- ========================================== -->
+<footer class="relative py-16 px-6 bg-[#160205] text-royal-sand text-center border-t border-royal-gold/30">
+<div class="max-w-4xl mx-auto space-y-6">
+<div class="inline-block p-3 rounded-full border border-royal-gold/40 mb-2">
+<span class="font-cinzel text-xl font-bold text-royal-gold">P&amp;A</span>
+</div>
+<h3 class="font-script text-4xl text-royal-lightGold">Prabh &amp; Ashu</h3>
+<p class="font-cinzel text-xs uppercase tracking-[0.3em] text-royal-gold/80">#PrabhKiAshu • #PrabhWedsAshu</p>
+<p class="font-serif italic text-xs text-royal-sand/60 max-w-md mx-auto">
+          "With the blessings of our ancestors and the warmth of your companionship, we take our first steps as one."
+        </p>
+<div class="pt-6 border-t border-royal-gold/20 flex flex-col sm:flex-row justify-between items-center text-[11px] text-royal-sand/50 font-sans gap-4">
+<span class="">Wedding Concierge: +91 94140 12345 / info@prabhashu.wedding</span>
+<span class="">Designed with royal devotion for the Grand Celebration</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- ========================================================================= -->
+<!-- JAVASCRIPT: PETAL ENGINE & INTERACTION LOGIC -->
+<!-- ========================================================================= -->
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. FALLING ROSE PETAL GENERATOR (Full Viewport Continuous Petals Wall)
+    const petalsContainer = document.getElementById('petals-container');
+    const petalImages = [
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBMIDReCUSAmUmj8lOx82jGseOjUaFhO7qp2z0x-Nr1uWYgVgJ5Z3RUCOnnDeOOeyyLNhvb2mQZHl5wg7V7hJ5WndwwxBk_jeUT29TjkTj-4Vw6hPUETh_Kx1Ml9dMiSqoACUET19TzLkGMZT8MVUMtCb4iXz4SKaHONHNMYXSQl5eMLMTFyWxi4RsVjTrOBHRcgmUNFzuPgXopCBLsW696BIt3WuhhvgNZgPaPZOmQ0tDG9eFsQGKn8FxLdS2rdL3yt7A",
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDQvTMJf-uBNmVEQjv9EzejdK9nAACMSGdhNI34Dc-DiBY4UUroCAVB8-N8WxJ_HdEVjU0lUWqTV1zi7M_kJ9K23ELPyf6FqNjck3ls-PCCgJ5eEKLImwhfL_kanZD0-SqQhVch3AEMMfpABKy0EClAgWbpNYTu8EB_xQSABop6iRsD9sVTc9keT7W4CANd_Y_y6UiCSvweEQ25VmFYPXwVyMT8GHkjauHg0ZrzUDCZx505X1QwPaLyBbHC1Lt6FwOw7GE"
+    ];
+
+    function createPetal(isBurst = false) {
+      if (!petalsContainer) return;
+
+      const petal = document.createElement('img');
+      const randomImg = petalImages[Math.floor(Math.random() * petalImages.length)];
+      petal.src = randomImg;
+      petal.alt = "";
+      petal.classList.add('falling-petal');
+
+      // Varied realistic sizes between 20px and 45px
+      const size = Math.floor(Math.random() * 26) + 20;
+      petal.style.width = `${size}px`;
+      petal.style.height = `${size}px`;
+
+      // Starting X position across whole viewport
+      const startX = Math.random() * 100;
+      petal.style.left = `${startX}vw`;
+
+      // Random horizontal drift between -140px and +140px
+      const drift = (Math.random() - 0.5) * 280;
+      petal.style.setProperty('--x-drift', `${drift}px`);
+
+      // Random 3D tilt & rotation
+      const rot = Math.floor(Math.random() * 720) - 360;
+      petal.style.setProperty('--rot', `${rot}deg`);
+
+      // Fall duration
+      const duration = isBurst ? (Math.random() * 2.8 + 2.5) : (Math.random() * 6 + 5.5);
+      petal.style.animationDuration = `${duration}s`;
+
+      // Delay
+      if (!isBurst) {
+        petal.style.animationDelay = `${Math.random() * 3}s`;
+      } else {
+        petal.style.animationDelay = '0s';
+      }
+
+      petalsContainer.appendChild(petal);
+
+      // Cleanup when animation ends
+      setTimeout(() => {
+        petal.remove();
+      }, (duration + 1) * 1000);
+    }
+
+    // Populate ongoing ambient petals across the whole screen continuously
+    function startAmbientPetals() {
+      // initial dense batch for full wall coverage
+      for (let i = 0; i < 35; i++) {
+        createPetal(false);
+      }
+      // steady continuous stream
+      setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          createPetal(false);
+        }
+      }, 400);
+    }
+
+    // Shower burst effect when button clicked
+    function showerPetalBurst(count = 45) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          createPetal(true);
+        }, i * 30);
+      }
+    }
+
+    startAmbientPetals();
+
+    // 2. OPEN INVITATION BUTTON INTERACTION
+    const openBtn = document.getElementById('open-invitation-btn');
+    const curtain = document.getElementById('curtain-overlay');
+
+    if (openBtn && curtain) {
+      openBtn.addEventListener('click', () => {
+        showerPetalBurst(55);
+
+        curtain.style.opacity = '0';
+        curtain.style.transform = 'scale(1.08)';
+        curtain.style.pointerEvents = 'none';
+
+        startAmbienceSound();
+
+        setTimeout(() => {
+          curtain.style.display = 'none';
+        }, 1200);
+      });
+    }
+
+    // Shower petals button on the inner frame
+    const showerBtn = document.getElementById('shower-petals-btn');
+    if (showerBtn) {
+      showerBtn.addEventListener('click', () => {
+        showerPetalBurst(50);
+      });
+    }
+
+    // 3. WEDDING MUSIC
+    // Uses music.mp3 from the same folder as this HTML file.
+    const weddingMusic = document.getElementById('wedding-music');
+    let isPlaying = false;
+
+    if (weddingMusic) {
+      weddingMusic.volume = 0.75;
+      weddingMusic.loop = true;
+    }
+
+    function startAmbienceSound() {
+      if (!weddingMusic) return;
+
+      weddingMusic.play().then(() => {
+        isPlaying = true;
+        updateMusicUI(true);
+      }).catch(() => {
+        // Browser blocked playback; the next user interaction will retry.
+        isPlaying = false;
+      });
+    }
+
+    // Start the MP3 on the user's FIRST touch/click anywhere on the page.
+    // This satisfies modern browser autoplay rules because playback begins
+    // directly from a real user interaction.
+    let firstInteractionHandled = false;
+
+    function startMusicOnFirstInteraction() {
+      if (firstInteractionHandled) return;
+      firstInteractionHandled = true;
+      startAmbienceSound();
+    }
+
+    document.addEventListener('pointerdown', startMusicOnFirstInteraction, { once: true, passive: true });
+
+    function toggleMusic() {
+      if (!weddingMusic) return;
+
+      if (weddingMusic.paused) {
+        startAmbienceSound();
+      } else {
+        weddingMusic.pause();
+        isPlaying = false;
+        updateMusicUI(false);
+      }
+    }
+
+    function updateMusicUI(active) {
+      const visualizer = document.getElementById('music-visualizer');
+      const musicIcon = document.getElementById('music-icon');
+      const musicText = document.getElementById('music-text');
+
+      if (active) {
+        if (visualizer) visualizer.classList.remove('hidden');
+        if (musicIcon) musicIcon.classList.add('hidden');
+        if (musicText) musicText.innerText = 'Playing';
+      } else {
+        if (visualizer) visualizer.classList.add('hidden');
+        if (musicIcon) musicIcon.classList.remove('hidden');
+        if (musicText) musicText.innerText = 'Ambience';
+      }
+    }
+
+    const musicToggleBtn = document.getElementById('music-toggle');
+    if (musicToggleBtn) {
+      musicToggleBtn.addEventListener('click', toggleMusic);
+    }
+
+    // 4. RSVP INTERACTION
+    function submitRSVP() {
+      showerPetalBurst(40);
+      document.getElementById('rsvp-form').classList.add('hidden');
+      document.getElementById('rsvp-success').classList.remove('hidden');
+    }
+
+    function resetRSVP() {
+      document.getElementById('rsvp-success').classList.add('hidden');
+      document.getElementById('rsvp-form').classList.remove('hidden');
+    }
+
+    // 5. BLESSINGS WALL DYNAMIC POSTING
+    function postBlessing() {
+      const input = document.getElementById('wish-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      showerPetalBurst(30);
+
+      const wall = document.getElementById('blessings-wall');
+      const newCard = document.createElement('div');
+      newCard.className = 'bg-white/95 p-6 rounded-2xl border-2 border-royal-gold shadow-lg transform transition-all animate-bounce';
+      newCard.style.animationDuration = '0.6s';
+      newCard.innerHTML = `
+        <p class="font-serif italic text-sm text-[#461D24] mb-3">"${text}"</p>
+        <div class="flex items-center justify-between text-xs font-cinzel text-royal-crimson border-t border-royal-gold/20 pt-3">
+          <span class="font-bold">Honoured Guest</span>
+          <span class="text-[10px] text-royal-gold font-bold">Just Now</span>
+        </div>
+      `;
+      wall.prepend(newCard);
+      input.value = '';
+    }
+  </script>
+
+
+</body></html>
