@@ -1,1 +1,786 @@
+<!DOCTYPE html>
 
+<html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akashdeep Singh &amp; Manraj Kaur - Wedding Celebration</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Great+Vibes&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            botanical: {
+              parchment: '#F7F6EE',
+              ivory: '#FAF8F2',
+              cardBg: '#FCFAF5',
+              borderGold: '#D8C38E',
+              darkForest: '#1E2F22',
+              sageForest: '#2D4733',
+              oliveMuted: '#4F6151',
+              goldText: '#9A772D',
+              goldAccent: '#B8964C',
+              burgundyAccent: '#5C2830',
+              sepia: '#4A2E2B',
+              borderMuted: '#E4DEC9'
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            display: ['Cinzel Decorative', 'serif'],
+            script: ['Great Vibes', 'cursive'],
+            sans: ['Montserrat', 'sans-serif'],
+          },
+          boxShadow: {
+            'botanical-card': '0 10px 30px -10px rgba(45, 71, 51, 0.12), 0 4px 12px rgba(184, 150, 76, 0.08)',
+            'botanical-float': '0 15px 35px -5px rgba(30, 47, 34, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="botanical-decorations">
+    .parchment-bg {
+      background-color: #F7F6EE;
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9Jdbu5vRcb2qcmSAHtqNCG9T-8iWt9MNtMdnu8Bm-BAcDkjewfkPW64tU5v_EbgFbifqEZUnTt9DtxHhyGiENDk0lUSBUJv6ZHX6EmJ793DHzZrEPF9nnznMmujD8lljGgcGoahoAam7yBQNi0Xm3BEuxkKUL6Se0DigxHOsJA16SZSQko6wSoYDJxy5q_6d8CiPl1AnykPYICkZ5mslFV3mHawAVfx1x0oXSUnn93gy0aVNJG60aVVVqqj1iuUllsmM');
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: top center;
+    }
+    
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #7A5B18 0%, #B8964C 50%, #684910 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .forest-gradient-text {
+      background: linear-gradient(135deg, #182B1B 0%, #2A4430 60%, #152618 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .botanical-card {
+      background: rgba(253, 251, 247, 0.94);
+      border: 1px solid #DFD5BE;
+      position: relative;
+    }
+
+    .botanical-card::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px dashed rgba(184, 150, 76, 0.45);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .corner-motif {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      pointer-events: none;
+    }
+    .corner-top-left { top: 7px; left: 7px; }
+    .corner-top-right { top: 7px; right: 7px; transform: rotate(90deg); }
+    .corner-bottom-left { bottom: 7px; left: 7px; transform: rotate(270deg); }
+    .corner-bottom-right { bottom: 7px; right: 7px; transform: rotate(180deg); }
+
+    /* Sound Bars Animation */
+    .sound-bar {
+      width: 2px;
+      height: 12px;
+      background-color: currentColor;
+      border-radius: 1px;
+      display: inline-block;
+      animation: soundWave 1.2s ease-in-out infinite alternate;
+    }
+    .sound-bar:nth-child(2) { animation-delay: 0.2s; height: 16px; }
+    .sound-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
+    .sound-bar:nth-child(4) { animation-delay: 0.15s; height: 14px; }
+    .sound-bar-paused {
+      animation-play-state: paused !important;
+      height: 4px !important;
+    }
+
+    @keyframes soundWave {
+      0% { height: 4px; }
+      50% { height: 16px; }
+      100% { height: 6px; }
+    }
+
+    /* Falling Petals Keyframes */
+    @keyframes petalFall {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg) rotateY(0deg) rotateX(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--petal-max-opacity, 0.9);
+      }
+      90% {
+        opacity: var(--petal-max-opacity, 0.85);
+      }
+      100% {
+        transform: translate3d(var(--petal-sway, 60px), 105vh, 0) rotate(var(--petal-rot-z, 360deg)) rotateY(var(--petal-rot-y, 720deg)) rotateX(var(--petal-rot-x, 360deg));
+        opacity: 0;
+      }
+    }
+
+    .falling-petal {
+      position: fixed;
+      top: -40px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 120;
+      will-change: transform, opacity;
+      animation-name: petalFall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    /* Entrance screen transition */
+    #entranceOverlay {
+      transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.85s;
+    }
+    #entranceOverlay.entrance-hidden {
+      opacity: 0;
+      transform: scale(1.05);
+      visibility: hidden;
+      pointer-events: none;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-[#F7F6EE] text-[#233224] font-sans antialiased min-h-screen pb-24 selection:bg-[#2D4733] selection:text-[#FAF8F2] relative">
+<!-- Audio Element for background celebration music -->
+<audio id="wedding-audio" loop="" preload="auto" src="music.mp3"></audio>
+<!-- Rose Petals Falling Container (Max 18-20 active items) -->
+<div class="pointer-events-none fixed inset-0 overflow-hidden z-[115]" id="petalsContainer"></div>
+<!-- BEGIN: Welcome Entrance Splash Screen Overlay -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#F7F6EE] parchment-bg overflow-y-auto" id="entranceOverlay">
+<div class="w-full max-w-sm my-auto text-center relative py-8 px-5 rounded-3xl bg-[#FAF8F2]/95 border-2 border-[#D8C38E] shadow-2xl backdrop-blur-md">
+<!-- Outer dashed ornamental line -->
+<div class="absolute inset-2.5 rounded-2xl border border-dashed border-[#B8964C]/50 pointer-events-none"></div>
+<!-- Corner Ornaments -->
+<svg class="corner-motif corner-top-left" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<svg class="corner-motif corner-top-right" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<svg class="corner-motif corner-bottom-left" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<svg class="corner-motif corner-bottom-right" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<!-- Content -->
+<div class="relative z-10">
+<!-- Sacred Ik Onkar with Floral Accents -->
+<div class="flex items-center justify-center space-x-2.5 mb-3">
+<span class="text-[#B8964C] text-sm">✦</span>
+<div class="w-12 h-12 rounded-full border border-[#D8C38E] bg-[#FAF8F2] flex items-center justify-center text-2xl font-serif text-[#7A5B18] font-bold shadow-sm">
+          ੴ
+        </div>
+<span class="text-[#B8964C] text-sm">✦</span>
+</div>
+<p class="text-[10px] uppercase tracking-[0.3em] text-[#5C2830] font-bold mb-1 font-sans">
+        !! ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ !!
+      </p>
+<p class="text-[11px] uppercase tracking-[0.25em] text-[#8C6D25] font-semibold mt-1 mb-2">
+        Wedding Celebration Of
+      </p>
+<!-- Couple Names -->
+<div class="py-2.5 my-1">
+<h1 class="text-2xl sm:text-3xl font-serif font-bold text-[#1E2F22] tracking-wide uppercase leading-tight">
+          Akashdeep Singh
+        </h1>
+<div class="my-1.5 flex items-center justify-center space-x-3">
+<span class="h-[1px] w-10 bg-[#B8964C]/70"></span>
+<span class="font-script text-2xl text-[#8C6D25] lowercase">weds</span>
+<span class="h-[1px] w-10 bg-[#B8964C]/70"></span>
+</div>
+<h1 class="text-2xl sm:text-3xl font-serif font-bold text-[#1E2F22] tracking-wide uppercase leading-tight">
+          Manraj Kaur
+        </h1>
+</div>
+<p class="text-xs font-serif text-[#4F6151] italic mb-1">
+        Together with their families
+      </p>
+<div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#EDE8D6]/80 border border-[#D8C38E] text-[11px] text-[#2D4733] font-medium tracking-wider uppercase my-2">
+<i class="fa-regular fa-calendar-days text-[#8C6D25] text-xs"></i>
+<span>April 5th, 2027</span>
+</div>
+<p class="text-[11px] text-[#5C2830] font-serif italic max-w-xs mx-auto leading-relaxed my-3">
+        "ਧਨੁ ਜਿਓਰੇ ਇਕ ਟੇਕ ਤੂ ਲਾਹਿ ਬਿਡਾਨੀ ਆਸ !!"
+      </p>
+<!-- Primary Enter Invitation Button -->
+<div class="pt-3 pb-1">
+<button class="group w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#2D4733] via-[#1E2F22] to-[#2D4733] text-[#FAF8F2] font-serif text-sm tracking-[0.2em] uppercase font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 border border-[#D8C38E]/60 relative overflow-hidden flex items-center justify-center space-x-2" id="enterInvitationBtn">
+<span class="absolute inset-0 bg-[#B8964C]/15 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+<i class="fa-solid fa-envelope-open-text text-[#D8C38E] text-sm animate-bounce"></i>
+<span>Enter Invitation</span>
+<i class="fa-solid fa-volume-high text-[#D8C38E] text-xs ml-1"></i>
+</button>
+</div>
+<p class="text-[10px] text-[#7A5B18] tracking-wider mt-2.5 font-sans flex items-center justify-center space-x-1">
+<span>♫</span>
+<span>Tap to open with wedding music &amp; blessings</span>
+</p>
+</div>
+</div>
+</div>
+<!-- END: Welcome Entrance Splash Screen Overlay -->
+<!-- BEGIN: Audio Ambience & Navigation Bar -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-[#FAF8F2]/90 border-b border-[#D8C38E]/50 shadow-sm text-botanical-darkForest">
+<div class="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<span class="w-8 h-8 rounded-full border border-botanical-goldAccent/70 flex items-center justify-center font-display text-botanical-goldAccent font-bold text-xs bg-[#2D4733] text-[#FAF8F2] shadow-sm">☬</span>
+<div>
+<p class="font-serif text-sm font-bold tracking-wider text-botanical-darkForest uppercase leading-tight">Akashdeep &amp; Manraj</p>
+<p class="text-[9px] uppercase tracking-widest text-[#5C2830] font-sans font-medium">Wedding Celebration</p>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<button class="flex items-center space-x-1.5 text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full border border-botanical-goldAccent/60 text-botanical-darkForest bg-white/90 hover:bg-[#EDE7D3] transition shadow-xs" id="musicToggleBtn">
+<div class="flex items-end space-x-0.5 h-3 text-[#B8964C] mr-0.5" id="soundWaves">
+<span class="sound-bar"></span>
+<span class="sound-bar"></span>
+<span class="sound-bar"></span>
+<span class="sound-bar"></span>
+</div>
+<i class="fa-solid fa-volume-high text-botanical-goldAccent text-xs" id="musicIcon"></i>
+<span class="font-medium" id="musicStatusText">Music</span>
+</button>
+</div>
+</div>
+</header>
+<!-- END: Audio Ambience & Navigation Bar -->
+<!-- BEGIN: Hero Section with Sacred Sikh Invocation & Botanical Parchment Art -->
+<section class="relative pt-8 pb-14 overflow-hidden parchment-bg text-center px-4" id="invitation">
+<div class="max-w-md mx-auto relative z-10">
+<!-- Sacred Khanda & Ik Onkar -->
+<div class="flex flex-col items-center justify-center mb-5">
+<div class="flex items-center justify-center space-x-3 mb-3">
+<svg class="w-7 h-7 text-[#9A772D] fill-current drop-shadow-sm" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,5 C47,5 45,7 45,10 L45,65 C41,60 33,57 25,60 C12,65 10,80 20,88 C30,96 45,90 48,82 L48,93 C48,96 52,96 52,93 L52,82 C55,90 70,96 80,88 C90,80 88,65 75,60 C67,57 59,60 55,65 L55,10 C55,7 53,5 50,5 Z M50,25 C62,25 72,35 72,47 C72,59 62,69 50,69 C38,69 28,59 28,47 C28,35 38,25 50,25 Z M50,32 C41.7,32 35,38.7 35,47 C35,55.3 41.7,62 50,62 C58.3,62 65,55.3 65,47 C65,38.7 58.3,32 50,32 Z"></path>
+</svg>
+<div class="text-3xl font-serif text-[#7A5B18] font-bold px-3.5 py-0.5 border-y border-[#B8964C]/70 tracking-widest bg-white/60 backdrop-blur-xs rounded-xs">ੴ</div>
+<svg class="w-7 h-7 text-[#9A772D] fill-current drop-shadow-sm" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M50,5 C47,5 45,7 45,10 L45,65 C41,60 33,57 25,60 C12,65 10,80 20,88 C30,96 45,90 48,82 L48,93 C48,96 52,96 52,93 L52,82 C55,90 70,96 80,88 C90,80 88,65 75,60 C67,57 59,60 55,65 L55,10 C55,7 53,5 50,5 Z M50,25 C62,25 72,35 72,47 C72,59 62,69 50,69 C38,69 28,59 28,47 C28,35 38,25 50,25 Z M50,32 C41.7,32 35,38.7 35,47 C35,55.3 41.7,62 50,62 C58.3,62 65,55.3 65,47 C65,38.7 58.3,32 50,32 Z"></path>
+</svg>
+</div>
+<!-- Gurmukhi Shlok -->
+<div class="bg-white/85 backdrop-blur-sm px-4 py-3 rounded-xl border border-[#D8C38E]/70 shadow-sm max-w-sm">
+<p class="text-sm font-semibold tracking-wide text-[#7A5B18] mb-1">!! ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ !!</p>
+<p class="text-xs font-serif tracking-wide text-[#233224] leading-relaxed">ਧਨੁ ਜਿਓਰੇ ਇਕ ਟੇਕ ਤੂ ਲਾਹਿ ਬਿਡਾਨੀ ਆਸ !!</p>
+<p class="text-xs font-serif tracking-wide text-[#233224] leading-relaxed">ਨਾਨਕ ਨਾਮ ਧਿਆਈਐ ਤਾ ਕਾਰਜਿ ਆਵੈ ਰਾਸਿ !!</p>
+</div>
+</div>
+<!-- Cordial Host Lines -->
+<div class="my-4">
+<p class="text-[10px] uppercase tracking-[0.25em] text-[#8C6D25] font-bold mb-1.5 flex items-center justify-center space-x-2">
+<span class="inline-block w-4 h-[1px] bg-[#B8964C]"></span>
+<span class="">A Cordial Wedding Invitation</span>
+<span class="inline-block w-4 h-[1px] bg-[#B8964C]"></span>
+</p>
+<h2 class="text-xl font-serif text-[#1E2F22] tracking-wider font-semibold uppercase">Sardarni Kiranjeet Kaur</h2>
+<p class="text-[11px] tracking-[0.2em] text-[#5C2830] font-semibold uppercase mt-0.5 font-sans">W/o Sardar Jagdish Singh</p>
+<p class="text-xs text-[#3E4F41] font-normal max-w-xs mx-auto mt-3 tracking-wide leading-relaxed">
+          SOLICITS YOUR GRACIOUS PRESENCE &amp; BLESSINGS ON THE AUSPICIOUS OCCASION OF THE MARRIAGE OF THEIR LOVING SON
+        </p>
+</div>
+<!-- Couple Hero Card -->
+<div class="botanical-card rounded-2xl py-6 px-4 my-5 shadow-botanical-card"><h2 class="text-xl font-serif text-[#1E2F22] tracking-wider font-semibold uppercase">Akashdeep Singh</h2>
+<div class="my-2 flex items-center justify-center space-x-3">
+<span class="h-[1px] w-12 bg-[#B8964C]/60"></span>
+<span class="font-script text-2xl text-[#8C6D25] lowercase">weds</span>
+<span class="h-[1px] w-12 bg-[#B8964C]/60"></span>
+</div>
+<h2 class="text-xl font-serif text-[#1E2F22] tracking-wider font-semibold uppercase">Manraj Kaur</h2>
+<p class="mt-3 text-xs text-[#5C2830] font-serif italic max-w-xs mx-auto leading-relaxed">
+          (D/o Late Sardarni Mandeep Kaur &amp; Sardar Daler Singh of Vill. Alimajra, Distt. Sambhu)
+        </p>
+<div class="mt-4 text-[11px] font-sans tracking-wide uppercase text-[#1E2F22] bg-[#EDE8D6]/80 px-3 py-1.5 rounded-lg border border-[#D8C38E]/70 flex items-center justify-center">
+<i class="fa-solid fa-house-chimney text-[#8C6D25] mr-1.5 text-xs"></i>
+<span class="font-medium">At Their Residence: Vill. Bori Pur, Kurukshetra</span>
+</div></div>
+<!-- Countdown -->
+<div class="mt-5" data-purpose="wedding-countdown">
+<h3 class="text-[10px] uppercase tracking-[0.25em] text-[#7A5B18] font-sans mb-3 font-semibold">Celebrating Our Auspicious Union In</h3>
+<div class="grid grid-cols-4 gap-2 text-center max-w-xs mx-auto" id="countdownTimer">
+<div class="bg-white/90 border border-[#D8C38E]/80 px-2 py-2 rounded-xl shadow-xs">
+<span class="block font-serif text-xl font-bold text-[#1E2F22]" id="cd-days">39</span>
+<span class="text-[9px] uppercase tracking-wider text-[#7A5B18] font-semibold">Days</span>
+</div>
+<div class="bg-white/90 border border-[#D8C38E]/80 px-2 py-2 rounded-xl shadow-xs">
+<span class="block font-serif text-xl font-bold text-[#1E2F22]" id="cd-hours">12</span>
+<span class="text-[9px] uppercase tracking-wider text-[#7A5B18] font-semibold">Hours</span>
+</div>
+<div class="bg-white/90 border border-[#D8C38E]/80 px-2 py-2 rounded-xl shadow-xs">
+<span class="block font-serif text-xl font-bold text-[#1E2F22]" id="cd-minutes">44</span>
+<span class="text-[9px] uppercase tracking-wider text-[#7A5B18] font-semibold">Mins</span>
+</div>
+<div class="bg-white/90 border border-[#D8C38E]/80 px-2 py-2 rounded-xl shadow-xs">
+<span class="block font-serif text-xl font-bold text-[#1E2F22]" id="cd-seconds">30</span>
+<span class="text-[9px] uppercase tracking-wider text-[#7A5B18] font-semibold">Secs</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Ceremonies & Program Itinerary -->
+<section class="py-10 px-4 max-w-md mx-auto relative" id="ceremonies">
+<div>
+<div class="text-center mb-7">
+<span class="text-[10px] uppercase tracking-[0.28em] text-[#5C2830] font-bold block mb-1">Auspicious Program</span>
+<h2 class="text-2xl font-serif font-bold text-[#1E2F22] tracking-wider">GOLDEN MOMENTS</h2>
+<div class="flex items-center justify-center space-x-2 my-2">
+<div class="w-10 h-0.5 bg-[#B8964C]/70"></div>
+<span class="text-[#8C6D25] text-xs">🌿</span>
+<span class="text-[#8C6D25] font-serif text-sm">✦</span>
+<span class="text-[#8C6D25] text-xs">🌿</span>
+<div class="w-10 h-0.5 bg-[#B8964C]/70"></div>
+</div>
+<p class="text-[#4F6151] font-serif italic text-xs max-w-xs mx-auto">
+          Please join us as we embark on this sacred journey of Anand Karaj and joyous festivities
+        </p>
+</div>
+<div class="space-y-5">
+<!-- Event 1: Path Sukhmani Sahib -->
+<div class="botanical-card rounded-2xl p-5 shadow-botanical-card flex flex-col justify-between border-t-4 border-t-[#2D4733]">
+<div class="text-center pb-2 border-b border-[#D8C38E]/40 mb-3">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-[#5C2830] bg-[#FAF2EB] px-2.5 py-0.5 rounded-full border border-[#E8D1C4]">
+              Spiritual Commencement
+            </span>
+<h3 class="text-lg font-serif font-bold text-[#1E2F22] mt-2">Monday, 5th April 2027</h3>
+</div>
+<div class="p-3 bg-white/95 rounded-xl border border-[#E4DEC9] shadow-xs text-center mb-3">
+<i class="fa-solid fa-book-open-reader text-xl text-[#8C6D25] mb-1 block"></i>
+<h4 class="font-serif text-base font-bold text-[#1E2F22]">Path Sukhmani Sahib</h4>
+<p class="text-[#2D4733] font-semibold font-mono text-xs mt-1">
+<i class="fa-regular fa-clock mr-1 text-[#8C6D25]"></i> 10:00 a.m.
+            </p>
+</div>
+<div class="text-center text-xs text-[#4F6151] mb-3.5">
+<p class="font-medium text-[#1E2F22]"><i class="fa-solid fa-location-dot text-[#5C2830] mr-1"></i> Venue: At Our Residence</p>
+<p class="text-[11px] text-[#637565] mt-0.5">Village Bori Pur, Kurukshetra</p>
+</div>
+<a class="block text-center py-2.5 px-4 rounded-xl bg-[#2D4733] text-[#FAF8F2] text-xs uppercase tracking-wider font-semibold hover:bg-[#1E2F22] transition shadow-sm" href="https://maps.google.com/?q=Boripur,Kurukshetra" rel="noopener" target="_blank">
+<i class="fa-solid fa-diamond-turn-right mr-1.5 text-[#D8C38E]"></i> Navigate to Residence
+          </a>
+</div>
+<!-- Event 2: Anand Karaj & Barat -->
+<div class="botanical-card rounded-2xl p-5 shadow-botanical-card flex flex-col justify-between border-t-4 border-t-[#B8964C] relative bg-gradient-to-b from-[#FCFAF5] to-[#F5EFE1]/60">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#B8964C] text-[#FAF8F2] text-[10px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full shadow-sm border border-[#CBB070]">
+            Wedding Day
+          </div>
+<div class="text-center pb-2 border-b border-[#D8C38E]/40 mb-3 pt-1">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-[#7A5B18] bg-[#F9F5EA] px-2.5 py-0.5 rounded-full border border-[#D8C38E]">
+              Anand Karaj &amp; Barat
+            </span>
+<h3 class="text-lg font-serif font-bold text-[#1E2F22] mt-2">Monday, 5th April 2027</h3>
+</div>
+<div class="p-3 bg-white/95 rounded-xl border border-[#E4DEC9] shadow-xs text-center mb-3">
+<i class="fa-solid fa-horse-head text-xl text-[#2D4733] mb-1 block"></i>
+<h4 class="font-serif text-base font-bold text-[#1E2F22]">Dep. of Barat</h4>
+<p class="text-[#2D4733] font-semibold font-mono text-xs mt-1">
+<i class="fa-regular fa-clock mr-1 text-[#8C6D25]"></i> 10:00 a.m.
+            </p>
+</div>
+<div class="text-center p-3 bg-white/80 rounded-xl border border-[#D8C38E]/70 mb-3.5">
+<span class="text-[10px] uppercase tracking-widest text-[#5C2830] font-semibold block">Wedding Venue</span>
+<p class="text-base font-serif font-bold text-[#1E2F22] mt-0.5">Royal Resturant</p>
+<p class="text-xs font-medium text-[#4F6151]">Rajpura, Punjab</p>
+</div>
+<a class="block text-center py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#2D4733] to-[#1E2F22] text-[#FAF8F2] text-xs uppercase tracking-wider font-semibold hover:opacity-95 transition shadow-sm" href="https://maps.google.com/?q=Royal+Restaurant+Rajpura" rel="noopener" target="_blank">
+<i class="fa-solid fa-location-arrow mr-1.5 text-[#D8C38E]"></i> Directions: Royal Resturant
+          </a>
+</div>
+<!-- Event 3: Reception & Lunch -->
+<div class="botanical-card rounded-2xl p-5 shadow-botanical-card flex flex-col justify-between border-t-4 border-t-[#2D4733]">
+<div class="text-center pb-2 border-b border-[#D8C38E]/40 mb-3">
+<span class="text-[10px] uppercase tracking-widest font-semibold text-[#5C2830] bg-[#FAF2EB] px-2.5 py-0.5 rounded-full border border-[#E8D1C4]">
+              Celebratory Feast
+            </span>
+<h3 class="text-lg font-serif font-bold text-[#1E2F22] mt-2">Monday, 5th April 2027</h3>
+</div>
+<div class="space-y-2 mb-3">
+<div class="p-2.5 bg-white/95 rounded-xl border border-[#E4DEC9] flex items-center justify-between">
+<div>
+<h4 class="font-serif text-sm font-bold text-[#1E2F22]">Rec. Party</h4>
+<p class="text-[11px] text-[#637565]">Welcoming Guests</p>
+</div>
+<span class="font-mono text-xs font-bold text-[#2D4733] bg-[#EDE8D6]/80 px-2 py-0.5 rounded border border-[#D8C38E]/60">10:00 a.m.</span>
+</div>
+<div class="p-2.5 bg-white/95 rounded-xl border border-[#E4DEC9] flex items-center justify-between">
+<div>
+<h4 class="font-serif text-sm font-bold text-[#1E2F22]">Lunch</h4>
+<p class="text-[11px] text-[#637565]">Royal Feast</p>
+</div>
+<span class="font-mono text-xs font-bold text-[#2D4733] bg-[#EDE8D6]/80 px-2 py-0.5 rounded border border-[#D8C38E]/60">1:00 p.m.</span>
+</div>
+</div>
+<div class="text-center text-xs text-[#4F6151] mb-3.5">
+<p class="font-medium text-[#1E2F22]"><i class="fa-solid fa-utensils text-[#8C6D25] mr-1"></i> Venue: At Our Residence</p>
+<p class="text-[11px] text-[#637565] mt-0.5">Vill. Bori Pur, Kurukshetra</p>
+</div>
+<a class="block text-center py-2.5 px-4 rounded-xl bg-[#2D4733] text-[#FAF8F2] text-xs uppercase tracking-wider font-semibold hover:bg-[#1E2F22] transition shadow-sm" href="https://maps.google.com/?q=Boripur,Kurukshetra" rel="noopener" target="_blank">
+<i class="fa-solid fa-diamond-turn-right mr-1.5 text-[#D8C38E]"></i> Navigate to Residence
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Ceremonies & Program Itinerary -->
+<!-- BEGIN: Venues & Interactive Navigation Map Section -->
+<section class="py-12 bg-[#EFECE0]/70 border-y border-[#D8C38E]/40 px-4" id="venues">
+<div class="max-w-md mx-auto">
+<div class="text-center mb-6">
+<span class="text-[10px] uppercase tracking-[0.25em] text-[#5C2830] font-bold block mb-1">Location Guide</span>
+<h2 class="text-2xl font-serif font-bold text-[#1E2F22]">Event Locations</h2>
+<p class="text-[#4F6151] text-xs mt-1">Tap to navigate smoothly on Google Maps</p>
+</div>
+<div class="space-y-4">
+<!-- Venue 1 -->
+<div class="bg-white/95 rounded-2xl p-4 shadow-botanical-card border border-[#D8C38E]/60">
+<div class="flex items-center space-x-3 text-[#1E2F22] mb-2">
+<span class="w-9 h-9 rounded-full bg-[#EDE7D3] flex items-center justify-center text-[#2D4733] text-base shrink-0">
+<i class="fa-solid fa-champagne-glasses"></i>
+</span>
+<div>
+<span class="text-[10px] uppercase font-semibold text-[#8C6D25] tracking-wider block">Wedding Venue</span>
+<h3 class="text-base font-serif font-bold text-[#1E2F22] leading-tight">Royal Resturant, Rajpura</h3>
+</div>
+</div>
+<p class="text-[#4F6151] text-xs mb-3 leading-relaxed">Anand Karaj &amp; daytime reception on Monday, 5th April 2027. Ample parking available.</p>
+<a class="block text-center py-2.5 px-4 rounded-xl bg-[#2D4733] hover:bg-[#1E2F22] text-[#FAF8F2] text-xs uppercase font-semibold tracking-wider transition shadow-sm" href="https://maps.google.com/?q=Royal+Restaurant+Rajpura" rel="noopener" target="_blank">
+<i class="fa-solid fa-map-pin mr-1.5 text-[#D8C38E]"></i> Open in Google Maps
+          </a>
+</div>
+<!-- Venue 2 -->
+<div class="bg-white/95 rounded-2xl p-4 shadow-botanical-card border border-[#D8C38E]/60">
+<div class="flex items-center space-x-3 text-[#1E2F22] mb-2">
+<span class="w-9 h-9 rounded-full bg-[#EDE7D3] flex items-center justify-center text-[#2D4733] text-base shrink-0">
+<i class="fa-solid fa-house-chimney"></i>
+</span>
+<div>
+<span class="text-[10px] uppercase font-semibold text-[#8C6D25] tracking-wider block">Family Residence</span>
+<h3 class="text-base font-serif font-bold text-[#1E2F22] leading-tight">Vill. Bori Pur, Kurukshetra</h3>
+</div>
+</div>
+<p class="text-[#4F6151] text-xs mb-3 leading-relaxed">Venue for Path Sukhmani Sahib (5th April 2027) &amp; Reception Feast (5th April 2027) hosted by Sardar Jagdish Singh family.</p>
+<div class="grid grid-cols-2 gap-2 mb-3">
+<a class="flex items-center justify-center space-x-1.5 py-2 px-2 rounded-xl bg-[#FAF8F2] border border-[#D8C38E]/70 text-[11px] text-[#1E2F22] font-semibold hover:bg-[#EDE8D6] transition" href="tel:+919876543210">
+<i class="fa-solid fa-phone text-[#8C6D25] text-xs"></i><span class="">Call Host 1</span>
+</a>
+<a class="flex items-center justify-center space-x-1.5 py-2 px-2 rounded-xl bg-[#FAF8F2] border border-[#D8C38E]/70 text-[11px] text-[#1E2F22] font-semibold hover:bg-[#EDE8D6] transition" href="tel:+919812345678">
+<i class="fa-solid fa-phone text-[#8C6D25] text-xs"></i><span class="">Call Host 2</span>
+</a>
+</div>
+<a class="block text-center py-2.5 px-4 rounded-xl bg-[#2D4733] hover:bg-[#1E2F22] text-[#FAF8F2] text-xs uppercase font-semibold tracking-wider transition shadow-sm" href="https://maps.google.com/?q=Boripur,Kurukshetra" rel="noopener" target="_blank">
+<i class="fa-solid fa-map-pin mr-1.5 text-[#D8C38E]"></i> Open in Google Maps
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Venues Section -->
+<!-- BEGIN: RSVP & Blessing Guestbook Section -->
+<section class="py-12 px-4 max-w-md mx-auto" id="rsvp">
+<div class="botanical-card rounded-2xl p-5 shadow-botanical-card">
+<!-- Corner Accents -->
+<svg class="corner-motif corner-top-left" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<svg class="corner-motif corner-top-right" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<svg class="corner-motif corner-bottom-left" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<svg class="corner-motif corner-bottom-right" viewbox="0 0 50 50">
+<path d="M5,5 L45,5 L45,10 L10,10 L10,45 L5,45 Z" fill="#B8964C" opacity="0.8"></path>
+</svg>
+<div class="text-center max-w-xs mx-auto mb-6">
+<span class="text-xs uppercase font-bold tracking-[0.25em] text-[#5C2830]">Honoured Guests</span>
+<h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#1E2F22] mt-1">Send Blessings &amp; RSVP</h2>
+<p class="text-[#4F6151] text-xs mt-1.5">
+          Your warm wishes and presence mean the world to Akashdeep and Manraj.
+        </p>
+</div>
+<!-- Interactive Form -->
+<form class="space-y-4" id="rsvpForm" onsubmit="event.preventDefault(); submitRSVP();">
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-[#1E2F22] mb-1">Your Full Name *</label>
+<input class="w-full rounded-xl border-[#D8C38E] bg-white/90 focus:border-[#2D4733] focus:ring focus:ring-[#2D4733]/20 text-sm py-2" placeholder="e.g. Jaspreet Singh Josan" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-[#1E2F22] mb-1">Phone / WhatsApp *</label>
+<input class="w-full rounded-xl border-[#D8C38E] bg-white/90 focus:border-[#2D4733] focus:ring focus:ring-[#2D4733]/20 text-sm py-2" placeholder="e.g. +91 98765-43210" required="" type="tel"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-[#1E2F22] mb-1">Attending Events</label>
+<select class="w-full rounded-xl border-[#D8C38E] bg-white/90 focus:border-[#2D4733] focus:ring focus:ring-[#2D4733]/20 text-xs py-2">
+<option value="all">All Ceremonies (5th April 2027)</option>
+<option value="barat">Departure of Barat (5th April 2027)</option>
+<option value="reception">Reception Party &amp; Lunch (5th April 2027)</option>
+<option value="path">Path Sukhmani Sahib (5th April 2027)</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-[#1E2F22] mb-1">No. of Family Members</label>
+<input class="w-full rounded-xl border-[#D8C38E] bg-white/90 focus:border-[#2D4733] focus:ring focus:ring-[#2D4733]/20 text-sm py-2" max="15" min="1" type="number" value="2"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold uppercase tracking-wider text-[#1E2F22] mb-1">Warm Blessings / Asees for Couple</label>
+<textarea class="w-full rounded-xl border-[#D8C38E] bg-white/90 focus:border-[#2D4733] focus:ring focus:ring-[#2D4733]/20 text-sm py-2" placeholder="Write your heartfelt congratulations and prayers here..." rows="3"></textarea>
+</div>
+<div class="text-center pt-2">
+<button class="w-full px-8 py-3 rounded-full bg-gradient-to-r from-[#2D4733] via-[#1E2F22] to-[#2D4733] text-[#FAF8F2] font-semibold text-xs uppercase tracking-widest shadow-md hover:shadow-botanical-float transition duration-300" type="submit">
+            Send Blessing &amp; Confirm RSVP
+          </button>
+</div>
+<!-- Success Toast Alert -->
+<div class="hidden p-3.5 bg-[#EAF2EC] border border-[#A4C4AA] text-[#1B3B21] rounded-xl text-center text-xs font-medium" id="rsvpSuccess">
+<i class="fa-solid fa-circle-check text-[#2D4733] mr-1.5 text-sm"></i>
+          Dhanvaad Ji! Your heartfelt blessings and RSVP have been conveyed to the Josan Family.
+        </div>
+</form>
+</div>
+</section>
+<!-- END: RSVP Section -->
+<!-- BEGIN: Family & Cordial Details Section -->
+<section class="bg-[#233224] text-[#FAF8F2] py-14 px-4 border-t border-[#B8964C]/40" id="contact">
+<div class="max-w-md mx-auto">
+<div class="space-y-6 text-center divide-y divide-[#B8964C]/30">
+<div class="pt-2">
+<span class="text-[10px] uppercase tracking-[0.25em] text-[#D8C38E] font-bold block mb-1">A Cordial Invitation From</span>
+<h3 class="text-xl font-serif font-bold text-[#F4F2E8]">Sardar Jagdish Singh</h3>
+<p class="text-xs text-[#DDD8C7] mt-0.5 font-medium">Vill. Boripur, Kurukshetra</p>
+<div class="mt-3.5 flex justify-center gap-2">
+<a class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#182619] border border-[#D8C38E]/50 text-[11px] text-[#FAF8F2] hover:bg-[#2D4733] transition shadow-xs" href="tel:+919876543210">
+<i class="fa-solid fa-phone text-[#D8C38E] text-[10px]"></i><span class="">98765-43210</span>
+</a>
+<a class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#182619] border border-[#D8C38E]/50 text-[11px] text-[#FAF8F2] hover:bg-[#2D4733] transition shadow-xs" href="tel:+919812345678">
+<i class="fa-solid fa-phone text-[#D8C38E] text-[10px]"></i><span class="">98123-45678</span>
+</a>
+</div>
+</div>
+<div class="pt-4">
+<span class="text-[10px] uppercase tracking-[0.25em] text-[#D8C38E] font-bold block mb-1">R. S. V. P.</span>
+<h3 class="text-lg font-serif font-bold text-[#F4F2E8]">All Josan Family</h3>
+<p class="text-xs text-[#DDD8C7] mt-0.5">Vill. Bori Pur, Kurukshetra</p>
+</div>
+<div class="pt-4">
+<span class="text-[10px] uppercase tracking-[0.25em] text-[#D8C38E] font-bold block mb-1">W. B. C. F.</span>
+<h3 class="text-lg font-serif font-bold text-[#F4F2E8]">All Relatives &amp; Friends</h3>
+<p class="text-xs text-[#DDD8C7] mt-0.5">With Best Compliments From</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-[#B8964C]/25 text-center">
+<p class="font-serif italic text-[#E2DEC8] text-xs max-w-xs mx-auto leading-relaxed">
+          "Lakh Khushian Patshahian Je Satgur Nader Kare" — May Waheguru shower eternal joy, harmony, and togetherness on the newlywed couple.
+        </p>
+<p class="text-[10px] uppercase tracking-widest text-[#D8C38E]/80 mt-3">
+          © 2027 Akashdeep Singh &amp; Manraj Kaur Wedding
+        </p>
+</div>
+</div>
+</section>
+<!-- END: Family Details Section -->
+<!-- BEGIN: Floating Action Mobile Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-[#FAF8F2]/95 backdrop-blur-md border-t border-[#D8C38E]/70 py-2.5 px-3 shadow-2xl">
+<div class="max-w-md mx-auto flex items-center justify-between gap-2">
+<a class="flex-1 inline-flex items-center justify-center space-x-1.5 bg-[#2D4733] hover:bg-[#1E2F22] text-[#FAF8F2] py-2.5 px-3 rounded-xl font-medium text-xs shadow-sm transition active:scale-95" href="https://api.whatsapp.com/send?text=You%20are%20cordially%20invited%20to%20the%20wedding%20celebration%20of%20Akashdeep%20Singh%20%26%20Manraj%20Kaur%20(26th%20-%2028th%20October%202026).%20Please%20join%20us%20with%20family%3A%20" target="_blank">
+<i class="fa-brands fa-whatsapp text-sm text-[#87D69E]"></i>
+<span class="">Share Card</span>
+</a>
+<a class="inline-flex items-center justify-center space-x-1 bg-white text-[#1E2F22] border border-[#D8C38E] hover:bg-[#FAF8F2] py-2.5 px-3 rounded-xl font-medium text-xs transition active:scale-95" href="#ceremonies">
+<i class="fa-regular fa-clock text-[#8C6D25] text-xs"></i>
+<span class="">Program</span>
+</a>
+<a class="inline-flex items-center justify-center space-x-1 bg-gradient-to-r from-[#B8964C] to-[#8C6D25] text-[#FAF8F2] font-semibold py-2.5 px-3.5 rounded-xl text-xs shadow-sm transition active:scale-95" href="#venues">
+<i class="fa-solid fa-diamond-turn-right text-xs"></i>
+<span class="">Map</span>
+</a>
+</div>
+</div>
+<!-- END: Floating Action Mobile Bar -->
+<!-- BEGIN: Interactive Scripts -->
+<script data-purpose="countdown-and-interactivity">
+    const weddingDate = new Date('April 5, 2027 10:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const cdD = document.getElementById('cd-days');
+        const cdH = document.getElementById('cd-hours');
+        const cdM = document.getElementById('cd-minutes');
+        const cdS = document.getElementById('cd-seconds');
+        if (cdD) cdD.innerText = String(days).padStart(2, '0');
+        if (cdH) cdH.innerText = String(hours).padStart(2, '0');
+        if (cdM) cdM.innerText = String(minutes).padStart(2, '0');
+        if (cdS) cdS.innerText = String(seconds).padStart(2, '0');
+      } else {
+        const timerElem = document.getElementById('countdownTimer');
+        if (timerElem) {
+          timerElem.innerHTML = "<div class='text-[#2D4733] font-serif text-xl font-bold'>The Auspicious Wedding Celebrations Have Begun!</div>";
+        }
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function submitRSVP() {
+      const toast = document.getElementById('rsvpSuccess');
+      if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+    }
+
+    // Audio & Entrance Management
+    const weddingAudio = document.getElementById('wedding-audio');
+    const musicToggle = document.getElementById('musicToggleBtn');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicStatus = document.getElementById('musicStatusText');
+    const soundWaves = document.getElementById('soundWaves');
+    const enterBtn = document.getElementById('enterInvitationBtn');
+    const entranceOverlay = document.getElementById('entranceOverlay');
+
+    let isMusicPlaying = false;
+
+    function setMusicState(playing) {
+      isMusicPlaying = playing;
+      const bars = soundWaves ? soundWaves.querySelectorAll('.sound-bar') : [];
+      if (playing) {
+        if (musicIcon) musicIcon.className = 'fa-solid fa-volume-high text-botanical-goldAccent text-xs';
+        if (musicStatus) musicStatus.textContent = 'Playing';
+        bars.forEach(b => b.classList.remove('sound-bar-paused'));
+      } else {
+        if (musicIcon) musicIcon.className = 'fa-solid fa-volume-xmark text-gray-400 text-xs';
+        if (musicStatus) musicStatus.textContent = 'Muted';
+        bars.forEach(b => b.classList.add('sound-bar-paused'));
+      }
+    }
+
+    // Initially paused before entrance interaction
+    setMusicState(false);
+
+    function startMusic() {
+      if (!weddingAudio) return;
+      weddingAudio.play().then(() => {
+        setMusicState(true);
+      }).catch(err => {
+        console.log("Audio playback waiting for interaction or source:", err);
+        // Toggle UI gracefully if audio file is not present locally yet
+        setMusicState(true);
+      });
+    }
+
+    function toggleMusic() {
+      if (!weddingAudio) return;
+      if (isMusicPlaying) {
+        weddingAudio.pause();
+        setMusicState(false);
+      } else {
+        weddingAudio.play().then(() => {
+          setMusicState(true);
+        }).catch(() => {
+          setMusicState(!isMusicPlaying);
+        });
+      }
+    }
+
+    if (musicToggle) {
+      musicToggle.addEventListener('click', toggleMusic);
+    }
+
+    if (enterBtn && entranceOverlay) {
+      enterBtn.addEventListener('click', () => {
+        startMusic();
+        entranceOverlay.classList.add('entrance-hidden');
+        setTimeout(() => {
+          entranceOverlay.style.display = 'none';
+        }, 900);
+      });
+    }
+
+    // Falling Rose Petals Effect (Strict Limit: 18-20 Petals)
+    const petalImages = [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCzYbjnzVFtZ51Sue0nIVKV-TMhOoBR5xq6oU1m_V-nePg-X1yjVdk32c6m_vXLP6GhbNRXXTfZJc7dT_ir51Vq2A8j-aSBYaFfvxnCQQa8tTp8tXb_HPOHhJEYCtgFJqp_3Jd9cqiSM7wySzcexvd1hpC4r9wm_xd02OsenrHcbsnXKHiKUQoVpmlq8pW_bdqR7HMc1X_WcYHwK7abyKNNHZuMr9TK11U4Pv9_0HHBv0OMoSD87dDcnfmUQfanQkIGOl8',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCvmSRQwxgpKNSYzJiPxKJ73XP7N5MORtJukfgTsl4SL5Iag_fEfvhamTdlnFQ-AtgwNz-QbSxPv3P_ykvlPHQ6PNjxt1KOn-dORqJZO8q6JlAGvrlXqrzAmRQ5pXUyiILByzg8bqpRlKcfb50Ei6T0XbsXSVxKaqVK5zfJ1HunCgluXrbHUlCvX4SO-tBNrSTXrycdDJjzbWRnRJetJx5y0ejnUqBaGHANif5lxzDGhoHMz0D4Vw5iJG9jIuI1GLDfeow'
+    ];
+    const MAX_PETALS = 19;
+    const petalsContainer = document.getElementById('petalsContainer');
+
+    function createPetal(initialDelay = 0) {
+      if (!petalsContainer) return;
+      const petal = document.createElement('img');
+      const randomImg = petalImages[Math.floor(Math.random() * petalImages.length)];
+      petal.src = randomImg;
+      petal.alt = "";
+      petal.className = 'falling-petal';
+
+      // Random parameters for natural falling physics
+      const left = Math.random() * 100; // 0 to 100vw
+      const size = Math.floor(Math.random() * 22) + 20; // 20px to 42px
+      const duration = (Math.random() * 6 + 6).toFixed(1); // 6s to 12s
+      const sway = (Math.random() * 120 - 60).toFixed(0) + 'px'; // -60px to +60px
+      const rotZ = (Math.random() * 360 + 180).toFixed(0) + 'deg';
+      const rotY = (Math.random() * 720 + 360).toFixed(0) + 'deg';
+      const rotX = (Math.random() * 360).toFixed(0) + 'deg';
+      const opacity = (Math.random() * 0.2 + 0.75).toFixed(2); // 0.75 to 0.95
+
+      petal.style.left = left + 'vw';
+      petal.style.width = size + 'px';
+      petal.style.height = 'auto';
+      petal.style.setProperty('--petal-max-opacity', opacity);
+      petal.style.setProperty('--petal-sway', sway);
+      petal.style.setProperty('--petal-rot-z', rotZ);
+      petal.style.setProperty('--petal-rot-y', rotY);
+      petal.style.setProperty('--petal-rot-x', rotX);
+      petal.style.animationDuration = duration + 's';
+      petal.style.animationDelay = initialDelay + 's';
+
+      petalsContainer.appendChild(petal);
+    }
+
+    // Initialize exactly MAX_PETALS distributed smoothly over time
+    if (petalsContainer) {
+      for (let i = 0; i < MAX_PETALS; i++) {
+        // Stagger entrance delays between 0s and 8s for instant continuous rain
+        const delay = (i * 0.45).toFixed(2);
+        createPetal(delay);
+      }
+    }
+  </script>
+<!-- END: Interactive Scripts -->
+</body></html>
