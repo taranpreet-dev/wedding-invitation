@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffdf8">
+  <title>Our Wedding</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="opening" class="opening" aria-label="Wedding opening">
+    <video id="doorVideo" class="door-video" playsinline preload="auto">
+      <source src="assets/opening-door.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="opening-vignette"></div>
+    <div class="opening-content">
+      <p class="eyebrow" id="openingEyebrow">A NEW CHAPTER BEGINS</p>
+      <h1 id="openingTitle">Two Hearts.<br><span>One Beautiful Beginning.</span></h1>
+      <p id="openingSubtitle">Step through the doors and into our story.</p>
+      <button id="enterButton" class="gold-button" type="button">
+        <span>Open the Doors</span><span class="button-arrow">↗</span>
+      </button>
+      <p class="hint">Tap to enter</p>
+    </div>
+    <button id="skipButton" class="skip-button" type="button" hidden>Skip opening</button>
+  </div>
 
+  <main id="site" class="site" aria-hidden="true">
+    <div class="gold-line gold-line-one"></div>
+    <div class="gold-line gold-line-two"></div>
+    <div class="gold-line gold-line-three"></div>
+    <div class="gold-orb orb-one"></div>
+    <div class="gold-orb orb-two"></div>
+    <span class="sparkle s1"></span><span class="sparkle s2"></span><span class="sparkle s3"></span><span class="sparkle s4"></span>
+
+    <header class="nav">
+      <a class="monogram" href="#home" aria-label="Home"><span id="navInitials">A &amp; R</span></a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <nav id="navLinks" class="nav-links">
+        <a href="#story">Our Story</a>
+        <a href="#events">Events</a>
+        <a href="#details">Details</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+    </header>
+
+    <section id="home" class="hero section">
+      <div class="hero-copy reveal">
+        <p class="eyebrow gold-text" id="heroEyebrow"></p>
+        <h2 id="coupleNames"></h2>
+        <p class="hero-date" id="heroDate"></p>
+        <p class="hero-location" id="heroLocation"></p>
+        <div class="ornament" aria-hidden="true"><span></span><i>✦</i><span></span></div>
+        <a class="gold-button" href="#story">Explore Our Story <span>↓</span></a>
+      </div>
+    </section>
+
+    <section id="story" class="section story-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow gold-text">THE BEGINNING</p>
+        <h2 id="storyHeading"></h2>
+        <div class="small-rule"></div>
+      </div>
+      <div class="story-grid">
+        <article class="story-card reveal">
+          <span class="story-number">01</span>
+          <h3 id="storyTitle"></h3>
+          <p id="storyText"></p>
+        </article>
+        <div class="quote-card reveal">
+          <div class="quote-mark">“</div>
+          <p id="quoteText"></p>
+          <span id="quoteAuthor"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section events-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow gold-text">THE CELEBRATION</p>
+        <h2>Save the dates</h2>
+        <p>Three moments, one unforgettable celebration.</p>
+      </div>
+      <div id="eventsGrid" class="events-grid"></div>
+    </section>
+
+    <section id="details" class="section details-section">
+      <div class="details-panel reveal">
+        <div>
+          <p class="eyebrow gold-text">A LITTLE SOMETHING</p>
+          <h2>Everything you need to know.</h2>
+        </div>
+        <div id="detailsGrid" class="details-grid"></div>
+      </div>
+    </section>
+
+    <section class="section countdown-section">
+      <div class="countdown-inner reveal">
+        <p class="eyebrow gold-text">COUNTING DOWN</p>
+        <h2>Until we say “I do”</h2>
+        <div class="countdown" id="countdown">
+          <div><strong id="days">00</strong><span>Days</span></div>
+          <div><strong id="hours">00</strong><span>Hours</span></div>
+          <div><strong id="minutes">00</strong><span>Minutes</span></div>
+          <div><strong id="seconds">00</strong><span>Seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section rsvp-section">
+      <div class="rsvp-card reveal">
+        <div>
+          <p class="eyebrow gold-text">YOUR PRESENCE</p>
+          <h2>Would you join us?</h2>
+          <p>We would be delighted to celebrate this new chapter with you.</p>
+        </div>
+        <button class="gold-button" id="rsvpButton" type="button">RSVP <span>↗</span></button>
+      </div>
+    </section>
+
+    <footer>
+      <div class="ornament"><span></span><i>✦</i><span></span></div>
+      <p id="footerText"></p>
+    </footer>
+  </main>
+
+  <dialog id="rsvpModal">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <p class="eyebrow gold-text">RSVP</p>
+    <h2>Join the celebration</h2>
+    <p class="modal-copy">This demo form is ready to connect to your preferred form service later.</p>
+    <form id="rsvpForm">
+      <label>Name<input required name="name" placeholder="Your name"></label>
+      <label>Email<input required type="email" name="email" placeholder="you@example.com"></label>
+      <label>Attendance
+        <select name="attendance">
+          <option>Joyfully attending</option>
+          <option>Unable to attend</option>
+        </select>
+      </label>
+      <button class="gold-button" type="submit">Send RSVP <span>→</span></button>
+    </form>
+    <p id="formSuccess" class="form-success" hidden>Thank you! Your response has been noted in this demo.</p>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
